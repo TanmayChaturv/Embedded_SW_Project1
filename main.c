@@ -3,7 +3,7 @@
 #include"headers.h"
 
 //char commands[7][14] = {"allocate", "free", "display", "write_mem", "invert", "write_pattern", "verify_pattern"};
-char input_command[1][14];
+//char input_command[1][14];
 
 int main()
 {
@@ -12,7 +12,8 @@ int main()
 
 	//display();
 	//allocate();
-	printf("enter man --<command_name> to enter the manual page \n");
+//	printf("Returned to Command Line Utility\n");
+//	printf("enter man --<command_name> to enter the manual page \n");
 //	scanf("%s", input_command);
 //	printf("%s", *input_command);
 }
