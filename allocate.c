@@ -1,5 +1,5 @@
 #include<stdio.h>
 int allocate()
 {
-	printf("allocate invoked");
+	printf("allocate invoked\n");
 }

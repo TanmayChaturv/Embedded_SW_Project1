@@ -6,5 +6,5 @@ int main()
 help();
 display();
 allocate();
-printf("ddd\n");
+printf("Return to Main function \n");
 }

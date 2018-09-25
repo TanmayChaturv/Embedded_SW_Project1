@@ -1,5 +1,5 @@
 #include<stdio.h>
 void help()
 {
-	printf("successfully invoked Help");
+	printf("successfully invoked Help\n");
 }
