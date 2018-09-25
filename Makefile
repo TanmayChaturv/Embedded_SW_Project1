@@ -42,14 +42,12 @@ write_pattern.o: write_pattern.c write_pattern.h
 
 
 verify_pattern.o: verify_pattern.c verify_pattern.h
-	$(CC) $(CFLAGS) verify_pattern.c
-
+	$(CC) $(CFLAGS) verify_pattern.c 
 
 #All .o files should depend upon respective .c files and headers.h file (DEPS)
 #*.o: *.c $(DEPS) 
 # gcc -c -o $(all dependencies) $(target file); means first compiling .c and .h into .o, then linking all dependencies to Target file
-#	$(CC) -c -o $^ $@
-
+#	$(CC) -c $^ -o $@
 
 clean: 
 	-@echo 'Removing Object and Executable files...'
