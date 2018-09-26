@@ -1,15 +1,23 @@
 # -*- MakeFile -*-
+# Coded by Tanmay Chaturvedi and Smitha Bhaskar       ##
+# Principles of Embedded Software Course - CU Boulder ##
+# Date: Sept 25, 2018				      ##
 
-CC= gcc
-CFLAGS= -c 
+## Code to build all .c files and their dependencies into one target file, named final ##
+
+## Code Begin ##
+CC= gcc #defining compiler
+CFLAGS= -c  #compilation variable
 #DEPS= headers.h
-Functions= main.o help.o allocate.o display.o free.o write_mem.o invert.o write_pattern.o verify_pattern.o
 
+Functions= main.o help.o allocate.o display.o free.o write_mem.o invert.o write_pattern.o verify_pattern.o 
 
+# Build target
 all: final
 
 final: $(Functions)
 	$(CC) $(Functions) -o final
+	-@echo 'Build successful, enter "./final" to run'
 
 main.o: main.c main.h
 	$(CC) $(CFLAGS) main.c
@@ -48,6 +56,7 @@ verify_pattern.o: verify_pattern.c verify_pattern.h
 #*.o: *.c $(DEPS) 
 # gcc -c -o $(all dependencies) $(target file); means first compiling .c and .h into .o, then linking all dependencies to Target file
 #	$(CC) -c $^ -o $@
+
 
 clean: 
 	-@echo 'Removing Object and Executable files...'
