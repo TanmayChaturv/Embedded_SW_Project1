@@ -1,5 +1,7 @@
 #include<stdio.h>
-#include"/home/smitha/PES_Project1/help.h"
+#include<stdlib.h>
+#include"help.h"
+#include"headers.h"
 
 char  func_comp(const void *a, const void *b);
 
@@ -8,6 +10,7 @@ char opcode;
 void (*func) ();
 };
 
+/* Splitting structure "funcinvoke" to ease addition of more functions */
 struct funcinvoke func[]={
 {'H' , help()},
 {'M' , write_memory()},
@@ -30,7 +33,7 @@ char *f;
 printf("Enter the opcode to invoke the appropriate function");
 scanf("%c",&entry);
 
-f=(char *) bsearch(&entry,func,6,sizeof(char),func_comp);
+f=(char *)bsearch(&entry,func,6,sizeof(char),func_comp); 
 struct funcinvoke a={entry , f};
 
 return 0;
