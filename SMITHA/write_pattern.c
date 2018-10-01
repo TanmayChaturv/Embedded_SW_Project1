@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include</home/smitha/PES_Project1/allocate.h>
+#include"allocate.h"
 
 int *allocate(int number);
 
@@ -9,7 +9,7 @@ void main(){
 __uint32_t* user_address; //address of the memory allocation process which the user defines
 int n; //number of 32 bit words which the user defines
 int *allocated_memory;
-__uint16_t seed;
+u_int16_t seed;
 __uint64_t output;
 
 

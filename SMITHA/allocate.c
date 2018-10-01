@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include</home/smitha/PES_Project1/allocate.h>
+#include<allocate.h>
+
 void print();
 int *allocate(int number);
 

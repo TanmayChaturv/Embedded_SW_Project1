@@ -1,7 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"/home/smitha/PES_Project1/main.h"
-#include"/home/smitha/PES_Project1/help.h"
+//#include"main.h"
+#include"help.h"
+#include"headers.h"
 
 char  func_comp(const void *a, const void *b);
 
@@ -10,7 +11,7 @@ char opcode;
 void (*func) ();
 };
 
-struct funcinvoke func[]={
+struct funcinvoke func[]={ /*** Arrange all in ascending order ***/
 {'H' , help},
 {'A' , allocate},
 {'W' , write_memory},
@@ -34,8 +35,8 @@ char *f;
 printf("Enter the opcode to invoke the appropriate function");
 scanf("%c",&entry);
 
-f=(char *) bsearch(&entry,func,6,sizeof(char),func_comp);
-struct funcinvoke a={entry,f};
+f=(char *) bsearch(&entry,func,sizeof(struct funcinvoke func[]),sizeof(char),func_comp);
+struct funcinvoke a={entry,f}; /*** Try to run and see if its calling a function ***/
 
 return 0;
 

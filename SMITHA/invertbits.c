@@ -1,10 +1,11 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include"exec_time.h"
+#include"invertbits.h"
 
 
 exec_time(0); //Clock Start//
-void invert(uint32_t n_bits, uint32_t* st_addr )
+void invertbits(uint32_t n_bits, uint32_t* st_addr )
 {
 	//uint32_t n_bits; // number of bits//
 	//uint32_t * st_addr; // start address //
