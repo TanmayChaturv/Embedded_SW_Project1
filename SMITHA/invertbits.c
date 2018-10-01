@@ -1,5 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include"exec_time.h"
+
+
 
 void invert(uint32_t n_bits, uint32_t* st_addr )
 {
