@@ -38,7 +38,7 @@ if (st_addr != NULL){
 		if (n_bits >=2){
 			printf("'%d' 32-bits memory locations have been successfully allocated \n",n_bits);
 			printf("The start-address of the allocated memory is %p, and location index is %d \n",st_addr,st_index ); //gives address range to the user//
-			printf("The end-address of the allocated memory is %p, and location index is %d \n",st_addr +n_bits, en_index + n_bits ); 
+			printf("The end-address of the allocated memory is %p, and location index is %d \n",st_addr +n_bits -1 , en_index + n_bits ); 
 			//return *st_addr;
 				}
 		else {

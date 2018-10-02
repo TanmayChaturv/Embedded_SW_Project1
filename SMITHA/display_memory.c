@@ -4,6 +4,9 @@
 
 void main(){
 
+/*** Change variables to extern global /
+modify scanfs and printfs
+use user_index to access memory location***/
 char option;
 char *user_address;
 int n;
@@ -19,16 +22,20 @@ if(option=='Y'){
 printf("Enter the number of bytes of the address you wish to view \n");
 scanf("%d",&n);
 for (i=0;i<n;i++){
-printf("%32ls \n ",&address[i]);
+printf("%32ls \n ",&address[i]); /*** it should display memory contents. Dereference ***/
 }
 
 }
 
 else if (option=='N'){
-printf("Enter the address you wish to view the contents of \n ");
+printf("Enter the address you wish to view the contents of \n "); /*** could be base address, /
+ or any other address, need to edit the code ***/ 
 scanf("%32hhx",user_address);
 printf("Enter the number of bytes of the address you wish to view \n");
 scanf("%d",&n);
+
+/*** Need to check bounds below, as user might specify locations that have garbage value/
+or locations that are unallocated ***/
 for (i=0;i<n;i++){
 printf("%32s \n ",&user_address[i]);
 

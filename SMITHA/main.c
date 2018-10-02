@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"/home/smitha/PES_Project1/main.h"
-#include"/home/smitha/PES_Project1/help.h"
+//#include"main.h"
+#include"headers.h"
 
 struct function_map {
     int opcode;
