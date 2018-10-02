@@ -3,44 +3,49 @@
 #include"/home/smitha/PES_Project1/main.h"
 #include"/home/smitha/PES_Project1/help.h"
 
-char  func_comp(const void *a, const void *b);
-
-struct funcinvoke {
-char opcode;
-void (*func) ();
+struct function_map {
+    int opcode;
+    char const* str;
 };
 
-struct funcinvoke func[]={
-{'H' , help},
-{'A' , allocate},
-{'W' , write_memory},
-{'F' , free_memory},
-{'D' , display_memory},
-{'I' , invertbits},
-{'P' , write_pattern},
-{'V' , verify_pattern}
-};
 
-//struct funcinvoke *fi =bsearch(func,6,sizeof(struct), func_compare);
+int comp_id_string( const void* key, const void* element)
+{
+    int key_id     = ((struct function_map*) key)->opcode;
+    int element_id = ((struct function_map*) element)->opcode;
 
-char  func_comp(const void *a , const void *b){
-const struct funcinvoke *p1=a , *p2=b ;
-return ((p1->opcode)-(p2->opcode));
-};
+    if (key_id < element_id) return -1;
+    if (key_id > element_id) return  1;
+    return 0;
+}
 
-int main() {
-char   entry;
-char *f;
-printf("Enter the opcode to invoke the appropriate function");
-scanf("%c",&entry);
+static struct function_map func[] = {
+    {'A', allocate} ,
+    {'D', display_memory},
+    {'F', free_memory},
+    {'H', help},
+    {'I' , invertbits},
+    {'P' , write_pattern},
+    {'V' , verify_pattern},
+    {'W' , write_memory}
+    
+     };
 
-f=(char *) bsearch(&entry,func,6,sizeof(char),func_comp);
-struct funcinvoke a={entry,f};
+#define ELEMENTS_OF(x) (sizeof(x) / sizeof((x)[0]))
 
-return 0;
+char const* get_func(int x)
+{
+    struct function_map key = {x};
+    struct function_map* fs = bsearch(&key, func , ELEMENTS_OF(func), sizeof(func[0]), comp_id_string);
 
+    if (!fs) return "invalid opcode";
 
+    return fs->str;
+}
 
+void test_func(char x)
+{
+    get_func(x);
 }
 
 
