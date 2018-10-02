@@ -1,13 +1,27 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"/home/smitha/PES_Project1/main.h"
-#include"/home/smitha/PES_Project1/help.h"
+//#include"main.h"
+#include"help.h"
+#include"headers.h"
 
 struct function_map {
     int opcode;
     char const* str;
 };
 
+<<<<<<< HEAD
+=======
+struct funcinvoke func[]={ /*** Arrange all in ascending order ***/
+{'H' , help},
+{'A' , allocate},
+{'W' , write_memory},
+{'F' , free_memory},
+{'D' , display_memory},
+{'I' , invertbits},
+{'P' , write_pattern},
+{'V' , verify_pattern}
+};
+>>>>>>> dcb039673a5b1737bbc8c8d642aa7dad658a0f8f
 
 int comp_id_string( const void* key, const void* element)
 {
@@ -31,7 +45,12 @@ static struct function_map func[] = {
     
      };
 
+<<<<<<< HEAD
 #define ELEMENTS_OF(x) (sizeof(x) / sizeof((x)[0]))
+=======
+f=(char *) bsearch(&entry,func,sizeof(struct funcinvoke func[]),sizeof(char),func_comp);
+struct funcinvoke a={entry,f}; /*** Try to run and see if its calling a function ***/
+>>>>>>> dcb039673a5b1737bbc8c8d642aa7dad658a0f8f
 
 char const* get_func(int x)
 {

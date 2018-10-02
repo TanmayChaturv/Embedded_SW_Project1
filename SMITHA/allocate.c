@@ -1,8 +1,12 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include</home/smitha/PES_Project1/allocate.h>
+#include<stdint.h>
+#include"allocate.h"
+
+
+
 void print();
-int *allocate(int number);
+//int *allocate(int n_bits);
 
 
 void print(){
@@ -10,27 +14,38 @@ printf("You have entered the command to allocate memory.\n");
 printf("Enter the number of 32-bit words you would like to allocate \n ");
 }
 
-int *allocate(int number){
+void *allocate(){
 
-int *p;
+//int *p;
+uint32_t n_bits;
+uint32_t st_index = 1;
+uint32_t* st_addr;
+//st_addr = 1;
+uint32_t en_index = 0;
+//en_index = 0;
 
-p=(int*)malloc(number * 4); //32 bit=4 bytes;
-
-printf("%d 32-bits have been successfully allocated /n",number);
-printf("The base-address of the allocated memory is %p /n",p); /*** give address range to the user ***/
-return p;
-}
-
-int main(){
-
-int number;
-int *a;
+//int *a;
 
 print();
-scanf("%d",&number);
+scanf("%d",&n_bits);
 
-a=allocate(number);
+st_addr=(uint32_t*)malloc(n_bits * 4); //32 bit=4 bytes;
 
-return 0;
+if (st_addr != NULL){	
+	if (n_bits ){
+		if (n_bits >=2){
+			printf("'%d' 32-bits memory locations have been successfully allocated \n",n_bits);
+			printf("The start-address of the allocated memory is %p, and location index is %d \n",st_addr,st_index ); //gives address range to the user//
+			printf("The end-address of the allocated memory is %p, and location index is %d \n",st_addr +n_bits, en_index + n_bits ); 
+			return *st_addr;
+				}
+		else {
+			printf("'%d' 32-bits memory locations have been successfully allocated\n",n_bits);
+                	printf("The start-address of the allocated memory is %p, and location index is %d \n",st_addr, st_index);
+		     }
+		}  
+	else printf("Please enter a number more than 0\n");
+else printf("Null pointer returned, no memory allocated");
+}
 
 }
