@@ -7,9 +7,15 @@ void main(){
 /*** Change variables to extern global /
 modify scanfs and printfs
 use user_index to access memory location***/
+
+/***[done,check] NEED Proper definitions for linking addresses with their index ***/
+
 char option;
-char *user_address;
-int n;
+extern uint32_t *st_addr;
+extern uint32_t *en_addr;
+extern uint32_t n_bits;
+uint32_t local_n_bits;
+uint32_t user_addr_index = (st_addr + local_n_bits - 1)
 int i;
 
 printf("You have entered the display memory command");
@@ -20,9 +26,9 @@ scanf("%c",&option);
 if(option=='Y'){
 
 printf("Enter the number of bytes of the address you wish to view \n");
-scanf("%d",&n);
-for (i=0;i<n;i++){
-printf("%32ls \n ",&address[i]); /*** it should display memory contents. Dereference ***/
+scanf("%d",&local_n_bits);
+for (i = user_addr_index; i< (en_index + 1); i++){
+printf("%32ls\n ",*(st_addr + i - 1); /***[done] it should display memory contents. Dereference ***/
 }
 
 }

@@ -6,19 +6,11 @@
 
 
 void print();
-//int *allocate(int n_bits);
 
-
-//int *p;
 uint32_t n_bits;
 uint32_t st_index = 1;
 uint32_t* st_addr;
-//st_addr = 1;
 uint32_t en_index = 0;
-//en_index = 0;
-
-//int *a;
-
 
 void print(){
 printf("You have entered the command to allocate memory.\n");
