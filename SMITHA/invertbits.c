@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include"exec_time.h"
 #include"invertbits.h"
+#include"global_variables.h"
 
 
 exec_time(0); //Clock Start//
@@ -12,17 +13,16 @@ void invertbits(uint32_t n_bits, uint32_t* st_addr )
 /*** Need to check if start and end address lies /
 in the range of preallocated addresses, else allocate first***/
 
-	uint32_t * en_addr = *st_addr + n_bits - 1; // end address = start + number of other addresses
+	uint32_t *en_addr = *st_addr + n_bits - 1; // end address = start + number of other addresses//
 	uint32_t inverted_data;
 
 
 // For Inverting, XOR data bits with 0xFFFFFFFF {32 bits}
 for (int i=0; i<n_bits; i++)
 {
-	*(st_addr + i-1) = (*st_addr + i-1) ^ 0xFFFFFFFF; //Replaced original data with inverted data
-	//Skip printf statement to reduce execution time.
+	*(st_addr + i-1) = (*st_addr + i-1) ^ 0xFFFFFFFF; //Replaced original data with inverted data//
 }
-	double end_time = exec_time(1);
+	double end_time = exec_time(1); //Clock End//
 	printf("time in micro seconds = %f", end_time*1000000);
 }
 
