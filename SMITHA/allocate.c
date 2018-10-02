@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdint.h>
-#include"allocate.h"
-
+//#include"allocate.h"
+#include"headers.h"
 
 
 void print();
@@ -14,7 +14,7 @@ printf("You have entered the command to allocate memory.\n");
 printf("Enter the number of 32-bit words you would like to allocate \n ");
 }
 
-void *allocate(){
+void allocate(){
 
 //int *p;
 uint32_t n_bits;
@@ -37,7 +37,7 @@ if (st_addr != NULL){
 			printf("'%d' 32-bits memory locations have been successfully allocated \n",n_bits);
 			printf("The start-address of the allocated memory is %p, and location index is %d \n",st_addr,st_index ); //gives address range to the user//
 			printf("The end-address of the allocated memory is %p, and location index is %d \n",st_addr +n_bits, en_index + n_bits ); 
-			return *st_addr;
+		//	return *st_addr;
 				}
 		else {
 			printf("'%d' 32-bits memory locations have been successfully allocated\n",n_bits);

@@ -2,4 +2,4 @@
 
 
 void print();
-int *allocate(int number);
+void allocate();
