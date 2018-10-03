@@ -1,10 +1,15 @@
 #include<stdio.h>
 #include<stdlib.h>
+<<<<<<< HEAD
 #include"headers.h"
 
 int comp_id_string( const void* key, const void* element);
 const char * get_func(char x);
 void test_func(char x);
+=======
+//#include"main.h"
+#include"headers.h"
+>>>>>>> ee067d12a7089078d22f5404676f0e6844ef9f9b
 
 struct function_map {
     char opcode;

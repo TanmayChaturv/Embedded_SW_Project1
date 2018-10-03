@@ -5,7 +5,7 @@
 
 
 
-int main(){
+void free_memory(){
 
 printf("You have entered free memory command");
 

@@ -1,0 +1,15 @@
+H       // Function - Help
+A       // Function - Memory allocation
+20      // Number of memory locations to be allocated
+W       // Function - Write to a memory location
+3	// Index of a memory location to be inserted a value /* Try to add values in multiple locations */
+D	// Function - Display contents of a memory location 
+N	// Display specific memory locations
+10	// Index of memory location to be displayed, returns garbage values if no values inserted
+I	// Function - Inverts bits at a memory location
+5	// Number of memory locations to be inverted
+F	// Function - Free memory locations
+	// YET TO ADD WRITE AND VERIFY PATTERNS
+
+
+
