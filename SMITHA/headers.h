@@ -1,5 +1,5 @@
 void help();
-void allocate();
+void allocate1();
 void display_memory();
 void free_memory();
 void write_memory();

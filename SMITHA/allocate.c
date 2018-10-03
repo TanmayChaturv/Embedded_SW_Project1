@@ -8,13 +8,12 @@
 void print();
 //int *allocate(int n_bits);
 
-
 void print(){
 printf("You have entered the command to allocate memory.\n");
 printf("Enter the number of 32-bit words you would like to allocate \n ");
 }
 
-void allocate(){
+void allocate1(){
 
 //int *p;
 uint32_t n_bits;
@@ -25,6 +24,15 @@ uint32_t en_index = 0;
 //en_index = 0;
 
 //int *a;
+
+
+void print(){
+printf("You have entered the command to allocate memory.\n");
+printf("Enter the number of 32-bit words you would like to allocate \n ");
+}
+
+void main(){
+
 
 print();
 scanf("%d",&n_bits);
@@ -37,7 +45,10 @@ if (st_addr != NULL){
 			printf("'%d' 32-bits memory locations have been successfully allocated \n",n_bits);
 			printf("The start-address of the allocated memory is %p, and location index is %d \n",st_addr,st_index ); //gives address range to the user//
 			printf("The end-address of the allocated memory is %p, and location index is %d \n",st_addr +n_bits, en_index + n_bits ); 
+
 		//	return *st_addr;
+
+			//return *st_addr;
 				}
 		else {
 			printf("'%d' 32-bits memory locations have been successfully allocated\n",n_bits);
@@ -45,7 +56,8 @@ if (st_addr != NULL){
 		     }
 		}  
 	else printf("Please enter a number more than 0\n");
+}
 else printf("Null pointer returned, no memory allocated");
 }
-
 }
+
