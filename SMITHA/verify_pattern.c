@@ -5,6 +5,13 @@
 
 void verify_pattern();
 
+extern uint32_t output_verify;
+uint32_t start_clock = 0;
+uint32_t end_clock = 1;
+	
+/*** see if attribution required for clock functionality ***/
+volatile double exec_time(start_clock); //Clock Start//
+
 void verify_pattern(){
 extern uint32_t* st_addr;
 extern uint32_t st_index;
@@ -12,16 +19,16 @@ extern uint32_t en_index;
 extern uint32_t n_bits;
 extern uint32_t user_index;
 u_int16_t seed;
-__uint64_t output_verify;
+extern uint32_t output_write;
 
 
-printf("Enter the address where you wish to store the pattern \n");
+printf("Enter the index from where you wish to verify the pattern \n");
 scanf("%d",&user_index);
 
-printf("Enter the number of 32-bit words you would like to allocate for the pattern \n ");
-scanf("%d", &n_bits);
+//printf("Enter the number of 32-bit words you would like to allocate for the pattern \n ");
+//scanf("%d", &n_bits);
 
-extern uint32_t allocated_memory_vp=(int*)malloc(n * 4);
+//extern uint32_t allocated_memory_vp=(int*)malloc(n * 4);
 
 printf("Enter a seed value which is any number within the range 1111-9999 \n ");
 scanf("%hd", &seed);
@@ -34,16 +41,16 @@ x^=x << 13;
 x^=x >> 15;
 x^=x << 17;
 
-extern uint64_t output_verify =x;
+uint32_t output_verify =x;
 
-printf("The pseudo random generated number is %ld \n ", output_verify);
+printf("The pseudo random generated number is %d \n ", output_verify);
 
-*((volatile int *)user_index)=output_verify; 
+*((volatile uint32_t *)(st_addr + user_index - 1))=output_verify; 
 
-if(output_verify == output_write) & (allocated_memory_vp==allocated_memory_wp)
+if(output_verify == output_write) /*** is allocation required? & (allocated_memory_vp==allocated_memory_wp) ***/
 	printf("pattern verified");
 else {
-	printf("the original pattern is %ld and the new pattern is %ld \n ",output_write,output_verify);
+	printf("the original pattern is %d and the new pattern is %d \n ",output_write,output_verify);
      }
 
 

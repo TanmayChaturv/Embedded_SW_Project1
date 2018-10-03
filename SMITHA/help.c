@@ -1,9 +1,12 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include"help.h"
+#include<stdint.h>
 //#include"main.h"
 
-void main()
+void help();
+
+void help()
 {
 	printf("Please Enter the following commands to invoke respective functions\n");
 	printf("'A' for allocation memory in a specified location \n");
@@ -14,7 +17,7 @@ void main()
         printf("'P' for generating a random pattern\n");
         printf("'V' for verifying a previously generated random pattern\n");
 
-exit(0);
+//exit(0);
 
 }
 

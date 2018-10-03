@@ -26,7 +26,7 @@ static struct function_map func[8] = {
      {'P' , write_pattern},
      {'V' , verify_pattern},
      {'W' , write_memory}
- 
+
      };
 
 int comp_id_string( const void* key, const void* element)

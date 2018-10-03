@@ -1,9 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdint.h>
-//#include"allocate.h"
+#include"allocate.h"
 #include"headers.h"
-
+#include"global_variables.h"
 
 void print();
 
@@ -17,10 +17,13 @@ void allocate(){
 
 //int *p;
 
-uint32_t n_bits; //Number of 32 bits locations to be allocated
-uint32_t st_index = 1;
-uint32_t* st_addr;
-uint32_t en_index = 0;
+extern uint32_t n_bits; //Number of 32 bits locations to be allocated
+extern uint32_t st_index;
+volatile extern uint32_t* st_addr;
+uint32_t en_index;
+
+st_index = 1;
+en_index = 0;
 
 
 print();

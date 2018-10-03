@@ -1,6 +1,7 @@
 #include<stdio.h>
-#include</home/smitha/PES_Project1/display_memory.h>
-#include</home/smitha/PES_Project1/allocate.h>
+#include"display_memory.h"
+#include<stdint.h>
+#include"allocate.h"
 
 void main(){
 

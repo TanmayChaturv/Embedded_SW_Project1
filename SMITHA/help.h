@@ -1,5 +1,6 @@
 #include<stdio.h>
 
-void print();
+//void print();
 
+void help();
 

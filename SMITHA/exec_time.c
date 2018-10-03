@@ -11,6 +11,7 @@ double exec_time(int time_state)
 switch(time_state){
 	case (0):
 		*time_ptr = clock();
+		return 0;
 		break;
 
 	case (1):
