@@ -20,6 +20,7 @@ struct function_map {
 static struct function_map func[8] = {
      {'A',allocate},
      {'D', display_memory},
+     {'E', exit},
      {'F', free_memory},
      {'H', help},
      {'I' , invertbits},

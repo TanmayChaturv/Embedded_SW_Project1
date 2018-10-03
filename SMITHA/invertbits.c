@@ -7,17 +7,18 @@
 
 void invertbits();
 
+
 uint32_t start_clock = 0;
 uint32_t end_clock = 1;
 	
 /*** see if attribution required for clock functionality ***/
-volatile double exec_time(start_clock); //Clock Start//
+//volatile double exec_time(start_clock); //Clock Start//
 void invertbits()
 {
 	uint32_t* user_addr_index; // points to the start address of mem location to be inverted
 	uint32_t invert_index = 0; //invert starts from here; used to reach invert address
 	uint32_t num_locations; // number of locations to be inverted
-	volatile extern uint32_t *st_addr;
+	//volatile extern uint32_t *st_addr;
 
 	printf("Enter the index of starting memory location to be inverted\n");
 	scanf("%d",&invert_index);
@@ -37,8 +38,8 @@ for (uint32_t i= (invert_index); i< invert_index + num_locations ; i++)
 {
 	*(st_addr + i-1) = (*st_addr + i-1) ^ 0xFFFFFFFF; //Replaced original data with inverted data//
 }
-	double end_time = exec_time(end_clock); //Clock End//
-	printf("time in micro seconds = %f", end_time*1000000);
+//	double end_time = exec_time(end_clock); //Clock End//
+//	printf("time in micro seconds = %f", end_time*1000000);
 }
 
 

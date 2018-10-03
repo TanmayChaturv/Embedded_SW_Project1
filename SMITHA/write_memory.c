@@ -6,12 +6,12 @@
 void write_memory();
 
 void write_memory(){
-volatile extern uint32_t* st_addr;
-extern uint32_t st_index;
-extern uint32_t en_index;//Check if the value is updated or stays zero as in main.c
-extern uint32_t n_bits;
+//volatile extern uint32_t* st_addr;
+//extern uint32_t st_index;
+//extern uint32_t en_index;//Check if the value is updated or stays zero as in main.c
+//extern uint32_t n_bits;
 uint32_t value; 
-volatile extern uint32_t user_index;
+//volatile extern uint32_t user_index;
 
 printf("Enter the index of the memory location you wish to update.\n");
 

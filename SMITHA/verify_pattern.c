@@ -2,24 +2,27 @@
 #include<stdlib.h>
 #include"allocate.h"
 #include<stdint.h>
+#include"global_variables.h"
+#include"exec_time.h"
+
 
 void verify_pattern();
-
-extern uint32_t output_verify;
-uint32_t start_clock = 0;
-uint32_t end_clock = 1;
+//void main(){
+/*extern*/ uint32_t output_verify;
+//uint32_t start_clock = 0;
+//uint32_t end_clock = 1;
 	
 /*** see if attribution required for clock functionality ***/
-volatile double exec_time(start_clock); //Clock Start//
+//volatile double exec_time(start_clock); //Clock Start//
 
 void verify_pattern(){
-extern uint32_t* st_addr;
+/*extern uint32_t* st_addr;
 extern uint32_t st_index;
 extern uint32_t en_index;
 extern uint32_t n_bits;
-extern uint32_t user_index;
+extern uint32_t user_index;*/
 u_int16_t seed;
-extern uint32_t output_write;
+//extern uint32_t output_write;
 
 
 printf("Enter the index from where you wish to verify the pattern \n");
@@ -41,9 +44,9 @@ x^=x << 13;
 x^=x >> 15;
 x^=x << 17;
 
-uint32_t output_verify =x;
+/*uint32_t*/ output_verify =x;
 
-printf("The pseudo random generated number is %d \n ", output_verify);
+printf("The pseudo random generated number is %d \n ", abs(output_verify));
 
 *((volatile uint32_t *)(st_addr + user_index - 1))=output_verify; 
 

@@ -2,18 +2,20 @@
 #include<stdlib.h>
 #include"allocate.h"
 #include<stdint.h>
+#include"global_variables.h"
 
 void write_pattern();
 
-extern uint32_t output_write;
+/*extern*/ uint32_t output_write;
 
 void write_pattern(){
 
-extern uint32_t* st_addr;
+//void main(){
+/*extern uint32_t* st_addr;
 extern uint32_t st_index;
 extern uint32_t en_index;
 extern uint32_t n_bits;
-extern uint32_t user_index;
+extern uint32_t user_index;*/
 uint16_t seed;
 
 
@@ -39,7 +41,7 @@ x^=x << 13;
 x^=x >> 15;
 x^=x << 17;
 
-uint32_t output_write =x;
+/*uint32_t*/ output_write =x;
 
 printf("The pseudo random generated number is %d \n ", output_write);
 

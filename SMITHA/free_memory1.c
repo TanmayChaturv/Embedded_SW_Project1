@@ -1,22 +1,21 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<stdint.h>
+#include"free_memory.h"
 #include"allocate.h"
-#include"headers.h"
 #include"global_variables.h"
+#include<stdint.h>
 
-void print();
+
+//void free_memory(){
+
+void main(){
+printf("You have entered free memory command");
 
 
-void print(){
-printf("You have entered the command to allocate memory.\n");
-printf("Enter the number of 32-bit words you would like to allocate \n ");
-}
-
-void allocate(){
-
-//int *p;
-
+extern uint32_t n_bits; //Number of 32 bits locations to be allocated
+extern uint32_t st_index;
+volatile extern uint32_t* st_addr;
+extern uint32_t en_index ;
 /*
 extern uint32_t n_bits; //Number of 32 bits locations to be allocated
 extern uint32_t st_index;
@@ -27,7 +26,7 @@ st_index = 1;
 en_index = 0;
 
 
-print();
+//print();
 scanf("%d",&n_bits); 
 
 st_addr=(uint32_t*)malloc(n_bits * 4); //32 bit=4 bytes;
@@ -55,6 +54,25 @@ if (st_addr != NULL){
 	else printf("Please enter a number more than 0 \n");
 	}
 else printf("Null pointer returned, no memory allocated");
+
+
+
+
+if(st_addr!=0){
+free(st_addr);
+free(st_addr);
+if(st_addr==0)
+{
+printf("The data in address has been cleared \n ");
+}
+else ("Not freed \n");
+}
+else {
+printf("No memory has been allocated to be freed \n ");
+printf("Go back to the command window to invoke the allocate memory command \n");
+
 }
 
+//return 0;
 
+}

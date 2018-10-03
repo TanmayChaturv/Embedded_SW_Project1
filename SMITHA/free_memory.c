@@ -2,21 +2,22 @@
 #include<stdlib.h>
 #include"free_memory.h"
 #include"allocate.h"
+#include"global_variables.h"
 #include<stdint.h>
 
 
 void free_memory(){
 
+//void main(){
 printf("You have entered free memory command");
 
 
-uint32_t n_bits; //Number of 32 bits locations to be allocated
+/*uint32_t n_bits; //Number of 32 bits locations to be allocated
 uint32_t st_index = 1;
-extern uint32_t* st_addr;
-uint32_t en_index = 0;
+volatile extern uint32_t* st_addr;
+uint32_t en_index = 0; */
 
-
-printf("E \n ");
+//printf("E \n ");
 
 if(st_addr!=0){
 free(st_addr);
