@@ -7,10 +7,11 @@
 
 void print();
 
-uint32_t n_bits;
+uint32_t n_bits; //Number of 32 bits locations to be allocated
 uint32_t st_index = 1;
 uint32_t* st_addr;
 uint32_t en_index = 0;
+
 
 void print(){
 printf("You have entered the command to allocate memory.\n");
@@ -21,7 +22,7 @@ void main(){
 
 
 print();
-scanf("%d",&n_bits);
+scanf("%d",&n_bits); 
 
 st_addr=(uint32_t*)malloc(n_bits * 4); //32 bit=4 bytes;
 

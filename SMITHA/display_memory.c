@@ -14,7 +14,8 @@ char option;
 extern uint32_t *st_addr;
 extern uint32_t *en_addr;
 extern uint32_t n_bits;
-uint32_t local_n_bits;
+extern uint32_t st_index; //Always 1
+uint32_t local_n_bits; //NUmber of bits to display within the range of allocated addresses
 uint32_t user_addr_index = (st_addr + local_n_bits - 1)
 int i;
 
