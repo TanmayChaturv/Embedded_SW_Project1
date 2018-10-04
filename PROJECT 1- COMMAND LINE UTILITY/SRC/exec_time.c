@@ -2,7 +2,7 @@
 
 #include<stdio.h>
 #include<time.h>
-#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/exec_time.h"
+#include"../INC/exec_time.h"
 
 double time_calc = 0;
 double* time_ptr = &time_calc;

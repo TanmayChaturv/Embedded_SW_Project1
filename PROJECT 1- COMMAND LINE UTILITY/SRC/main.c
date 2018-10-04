@@ -7,8 +7,8 @@
 #include<stdlib.h>
 #include<stdint.h>
 
-#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/headers.h"
-#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/main.h"
+#include"../INC/headers.h"
+#include"../INC/main.h"
 
 
 int comp_id_string( const void* key, const void* element);

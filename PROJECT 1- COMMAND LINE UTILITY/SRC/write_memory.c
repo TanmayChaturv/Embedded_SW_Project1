@@ -1,9 +1,9 @@
 #include<stdio.h>
 #include<stdint.h>
 
-#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/allocate.h"
-#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/global_variables.h"
-#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/headers.h"
+#include"../INC/allocate.h"
+#include"../INC/global_variables.h"
+#include"../INC/headers.h"
 
 
 void write_memory();

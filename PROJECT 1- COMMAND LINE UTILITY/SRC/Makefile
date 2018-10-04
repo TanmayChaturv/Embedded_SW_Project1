@@ -23,40 +23,40 @@ final: $(Functions)
 main.o: main.c  $(SRC_Functions)
 	$(CC) $(CFLAGS) main.c
 
-help.o: help.c help.h 
+help.o: help.c  
 	$(CC) $(CFLAGS) help.c
 
-allocate.o: allocate.c allocate.h 
+allocate.o: allocate.c  
 	$(CC) $(CFLAGS) allocate.c
 
 
-display_memory.o: display_memory.c display_memory.h allocate.c write_memory.c $(DEPS)
+display_memory.o: display_memory.c  allocate.c write_memory.c 
 	$(CC) $(CFLAGS) display_memory.c 
 
 
-free_memory.o: free_memory.c free_memory.h allocate.c $(DEPS)
+free_memory.o: free_memory.c  allocate.c  
 	$(CC) $(CFLAGS) free_memory.c
 
 
-write_memory.o: write_memory.c write_memory.h allocate.c $(DEPS)
+write_memory.o: write_memory.c  allocate.c 
 	$(CC) $(CFLAGS) write_memory.c
 
 
-invertbits.o: invertbits.c invertbits.h allocate.c exec_time.c $(DEPS)
+invertbits.o: invertbits.c  allocate.c exec_time.c 
 	$(CC) $(CFLAGS) invertbits.c
 
 
-write_pattern.o: write_pattern.c write_pattern.h exec_time.c $(DEPS)
+write_pattern.o: write_pattern.c  exec_time.c 
 	$(CC) $(CFLAGS) write_pattern.c
 
 
-verify_pattern.o: verify_pattern.c verify_pattern.h write_pattern.c exec_time.c $(DEPS)
+verify_pattern.o: verify_pattern.c  write_pattern.c exec_time.c 
 	$(CC) $(CFLAGS) verify_pattern.c 
 
-exec_time.o: exec_time.c exec_time.h
+exec_time.o: exec_time.c 
 	$(CC) $(CFLAGS) exec_time.c
 
-exit_func.o: exit_func.c exit_func.h
+exit_func.o: exit_func.c 
 	$(CC) $(CFLAGS) exit_func.c
 
 #All .o files should depend upon respective .c files and headers.h file (DEPS)

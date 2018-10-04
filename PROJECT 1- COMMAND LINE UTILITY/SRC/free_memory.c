@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/free_memory.h"
-#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/allocate.h"
-#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/global_variables.h"
+#include"../INC/free_memory.h"
+#include"../INC/allocate.h"
+#include"../INC/global_variables.h"
 #include<stdint.h>
 
 
