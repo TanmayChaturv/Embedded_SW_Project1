@@ -9,7 +9,7 @@
 void free_memory(){
 
 //void main(){
-printf("You have entered free memory command");
+printf("You have entered free memory command\n");
 
 
 /*uint32_t n_bits; //Number of 32 bits locations to be allocated

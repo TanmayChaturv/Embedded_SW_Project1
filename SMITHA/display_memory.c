@@ -20,7 +20,7 @@ uint32_t local_index; //Index to access the memory location for displaying data
 uint32_t user_addr_index = (st_addr + local_index - 1);
 
 
-printf("You have entered the display memory command");
+printf("You have entered the display memory command\n");
 //printf("Do you wish to view the contents of the previously allocated memory, PRESS Y \n");
 //printf("Do you wish to view the contents of any address that you specify, PRESS N \n");
 //scanf("%c",&option);
@@ -30,7 +30,7 @@ printf("You have entered the display memory command");
 printf("Enter the index of memory location to display its value\n");
 scanf("%d",&local_index);
 //for (i = user_addr_index; i< (en_index + 1); i++){
-printf("%32d\n ",*(st_addr + local_index - 1)); /***[done] it should display memory contents. Dereference ***/
+printf("%d\n ",*(st_addr + local_index - 1)); /***[done] it should display memory contents. Dereference ***/
 //}
 
 }

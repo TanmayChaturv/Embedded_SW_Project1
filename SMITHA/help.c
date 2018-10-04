@@ -17,7 +17,9 @@ void help()
         printf("'P' for generating a random pattern\n");
         printf("'V' for verifying a previously generated random pattern\n");
 
-exit(0);
+//break;
+//exit(1);
 
+//return 0;
 }
 

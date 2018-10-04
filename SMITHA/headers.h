@@ -1,4 +1,6 @@
-void help();
+#include<stdint.h>
+
+uint32_t help();
 void allocate();
 void display_memory();
 void free_memory();

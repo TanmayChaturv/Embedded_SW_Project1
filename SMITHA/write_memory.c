@@ -2,6 +2,8 @@
 #include"allocate.h"
 #include"global_variables.h"
 #include<stdint.h>
+#include"headers.h"
+
 
 void write_memory();
 

@@ -17,8 +17,8 @@ struct function_map {
 
 
 
-static struct function_map func[8] = {
-     {'A',allocate},
+static struct function_map func[9] = {
+     {'A', allocate},
      {'D', display_memory},
      {'E', exit},
      {'F', free_memory},
@@ -47,9 +47,9 @@ const char * get_func(char x)
     struct function_map key = {x, NULL};
 
      
-    struct function_map  *fs = bsearch(&key, func , 8, sizeof(func[0]), comp_id_string);
+    struct function_map  *fs = bsearch(&key, func , 9, sizeof(func[0]), comp_id_string);
     
-    if (!fs) return "invalid opcode";
+    if (!fs) printf( "invalid opcode \n");
      
 
     return fs->str;
@@ -63,9 +63,14 @@ void test_func(char x)
 
 }
 
-int main(void){
- char user;
- scanf("%c",&user);
- test_func(user);
-return 0;
+void main(){
+ char user1, user2;
+do{
+ printf("Enter 'H' for the list of available commands.\n");
+ scanf("%c",&user1);
+ test_func(user1);
+ printf("Enter the next opcode you wish to execute \n");
+ scanf("%c",&user2);
+}while ((user2) != 'E'); 
+
 }
