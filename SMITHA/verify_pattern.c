@@ -7,6 +7,7 @@
 
 
 void verify_pattern();
+
 //void main(){
 /*extern*/ uint32_t output_verify;
 //uint32_t start_clock = 0;
@@ -16,6 +17,11 @@ void verify_pattern();
 //volatile double exec_time(start_clock); //Clock Start//
 
 void verify_pattern(){
+uint32_t start_clock = 0;
+uint32_t end_clock = 1;
+
+(double)exec_time(start_clock); //CLOCK START//
+
 /*extern uint32_t* st_addr;
 extern uint32_t st_index;
 extern uint32_t en_index;
@@ -50,8 +56,11 @@ printf("The pseudo random generated number is %d \n ", abs(output_verify));
 
 *((volatile uint32_t *)(st_addr + user_index - 1))=output_verify; 
 
-if(output_verify == output_write) /*** is allocation required? & (allocated_memory_vp==allocated_memory_wp) ***/
-	printf("pattern verified");
+if(output_verify == output_write){ /*** is allocation required? & (allocated_memory_vp==allocated_memory_wp) ***/
+	printf("pattern verified\n");
+	double time_calc = exec_time(end_clock);
+	printf("execution time in micro seconds = %f\n", time_calc*1000000);
+}
 else {
 	printf("the original pattern is %d and the new pattern is %d \n ",output_write,output_verify);
      }

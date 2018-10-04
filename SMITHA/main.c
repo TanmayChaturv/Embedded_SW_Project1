@@ -18,11 +18,11 @@ struct function_map {
 
 
 static struct function_map func[9] = {
-     {'A', allocate},
-     {'D', display_memory},
-     {'E', exit},
-     {'F', free_memory},
-     {'H', help},
+     {'A' , allocate},
+     {'D' , display_memory},
+     {'E' , exit},
+     {'F' , free_memory},
+     {'H' , help},
      {'I' , invertbits},
      {'P' , write_pattern},
      {'V' , verify_pattern},
@@ -66,12 +66,14 @@ void test_func(char x)
 void main(){
 char user1, user2;
  printf("Enter 'H' for the list of available commands.\n");
+ printf(">>");
 
 do{
 // printf("Enter 'H' for the list of available commands.\n");
  scanf("%c",&user1);
  test_func(user1);
- printf("Enter the next opcode you wish to execute \n");
+ printf("Enter the next opcode you wish to execute:\n");
+printf("\n>>");
  scanf("%c",&user2);
 }while ((user2) != 'E'); 
 printf("Exit!");

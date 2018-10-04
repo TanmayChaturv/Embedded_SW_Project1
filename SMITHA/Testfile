@@ -1,21 +1,18 @@
-H       // Function - Help
-A       // Function - Memory allocation
-100     // Number of memory locations to be allocated
-W       // Function - Write to a memory location
-50	// Index of a memory location to be inserted a value
-123	// Value to be stored in the address in HEX
-D	// Function - Display contents of a memory location
-50	// 
-I	// Function - Invert bits
-50	// Location where inversion takes place
-P	// Function - Random Pattern gGenerator
-40	// Index where pattern is stored
-3456	// Seed input
-V	// Function - Verify random pattern generator
-40	// Index from where pattern has to be verified
-3456	// Seed to generate a pattern and compare with previous pattern
-E	// Function - Exit
-
-
-
+H
+A
+100
+W
+50
+123
+D
+50
+I
+50
+P
+40
+3456
+V
+40
+3456
+E
 

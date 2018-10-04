@@ -3,6 +3,7 @@
 #include"allocate.h"
 #include<stdint.h>
 #include"global_variables.h"
+#include"exec_time.h"
 
 void write_pattern();
 
@@ -18,6 +19,10 @@ extern uint32_t n_bits;
 extern uint32_t user_index;*/
 uint16_t seed;
 
+uint32_t start_clock = 0;
+uint32_t end_clock = 1;
+
+(double)exec_time(start_clock);
 
 
 printf("Enter the index of address where you wish to store the pattern \n");
@@ -46,8 +51,11 @@ x^=x << 17;
 printf("The pseudo random generated number is %d \n ", output_write);
 
 *((volatile uint32_t *)(st_addr + user_index - 1))=output_write; 
+double time_calc = exec_time(end_clock);
 
 printf("The memory location has been updated with the pseudo random number \n");
+
+	printf("execution time in micro seconds = %f\n", time_calc*1000000);
 
 }
 

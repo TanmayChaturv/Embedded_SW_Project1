@@ -16,7 +16,7 @@ switch(time_state){
 
 	case (1):
 		*time_ptr = (clock() - *time_ptr);
-		return(*time_ptr/CLOCKS_PER_SEC);
-	
-}
+		return(*time_ptr/CLOCKS_PER_SEC); //[Calculation Reference: https://stackoverflow.com/questions/5248915/execution-time-of-c-program]
 
+}
+}

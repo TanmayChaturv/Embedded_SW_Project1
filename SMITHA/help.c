@@ -16,10 +16,8 @@ void help()
         printf("'I' for inverting contents in a specified  memory area\n");
         printf("'P' for generating a random pattern\n");
         printf("'V' for verifying a previously generated random pattern\n");
+	printf("'E' for exiting this command line utility\n\n");
 
-//break;
-//exit(1);
 
-//return 0;
 }
 
