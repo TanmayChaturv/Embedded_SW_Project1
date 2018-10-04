@@ -6,6 +6,7 @@
 #include"global_variables.h"
 
 void allocate(){
+printf("'Allocate' function:\n");
 
 printf("You have entered the command to allocate memory.\n");
 printf("Enter the number of 32-bit words you would like to allocate: \n ");

@@ -7,6 +7,7 @@
 
 
 void display_memory(){
+printf("'Display Memory' function:\n");
 
 char option;
 uint32_t local_index; //Index to access the memory location for displaying data

@@ -8,6 +8,7 @@
 void write_memory();
 
 void write_memory(){
+printf("'Write to Memory' function:\n");
 uint32_t value; 
 en_index = st_index + n_bits - 1;
 
@@ -29,7 +30,7 @@ if ((user_index <= en_index)&(user_index >= st_index))
 	if(value >=0) 
 	{
 		*(st_addr + user_index - 1 )=value;
-		printf("The updated value at index %d is 0x%x \n\n", user_index,value);
+		printf("The updated value at index %d is 0x%x (in HEX) \n\n", user_index,value);
 	}
 	else printf("Error! Only accepts value >= 0\n\n");
 }

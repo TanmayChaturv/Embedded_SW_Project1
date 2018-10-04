@@ -7,28 +7,17 @@
 
 
 void free_memory(){
-
-//void main(){
-printf("You have entered free memory command\n");
-
-
-/*uint32_t n_bits; //Number of 32 bits locations to be allocated
-uint32_t st_index = 1;
-volatile extern uint32_t* st_addr;
-uint32_t en_index = 0; */
-
-//printf("E \n ");
+printf("'Free memory' function:\n");
 
 if(st_addr!=0){
 free(st_addr);
-printf("The data in address has been cleared \n ");
+printf("The data in address has been cleared \n\n ");
 }
 else {
-printf("No memory has been allocated to be freed \n ");
-printf("Go back to the command window to invoke the allocate memory command \n");
+printf("No memory has been allocated to be freed \n\n ");
+
 
 }
 
-//return 0;
 
 }

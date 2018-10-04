@@ -10,11 +10,11 @@ void invertbits();
 
 void invertbits()
 {
-
+printf("'Invertbits' function:\n");
 uint32_t start_clock = 0;
 uint32_t end_clock = 1;
 en_index = st_index + n_bits - 1;
-
+	
 
 	uint32_t invert_index; //invert starts from here; used to reach invert address
 
@@ -25,8 +25,9 @@ en_index = st_index + n_bits - 1;
 if ((invert_index <= en_index)&(invert_index >= st_index))
 {
 	printf("Original value: 0x%x\n", *(st_addr + invert_index - 1));
+
 	(double)exec_time(start_clock); //CLOCK START//
-	*(st_addr + invert_index-1) = (*st_addr + invert_index-1) ^ 0xFFFFFFFF; //Replaced original data with inverted data//
+	*(st_addr + invert_index-1) = *(st_addr + invert_index-1) ^ (0xFFFFFFFF); //Replaced original data with inverted data//
  
 	double time_calc = exec_time(end_clock); //CLOCK END//
 

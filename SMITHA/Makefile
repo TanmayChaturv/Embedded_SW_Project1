@@ -6,7 +6,7 @@
 ## Code to build all .c files and their dependencies into one target file, named final ##
 
 ## Code Begin ##
-CC= gcc  #defining compiler
+CC= gcc #defining compiler
 CFLAGS= -c  #compilation variable
 DEPS= headers.h
 
