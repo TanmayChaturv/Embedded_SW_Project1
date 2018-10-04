@@ -17,7 +17,7 @@ use user_index to access memory location***/
 
 char option;
 uint32_t local_index; //Index to access the memory location for displaying data
-uint32_t user_addr_index = (st_addr + local_index - 1);
+//uint32_t *user_addr_index = (st_addr + local_index - 1);
 
 
 printf("You have entered the display memory command\n");
@@ -30,7 +30,7 @@ printf("You have entered the display memory command\n");
 printf("Enter the index of memory location to display its value\n");
 scanf("%d",&local_index);
 //for (i = user_addr_index; i< (en_index + 1); i++){
-printf("%d\n ",*(st_addr + local_index - 1)); /***[done] it should display memory contents. Dereference ***/
+printf("%x\n ",*(st_addr + local_index - 1)); /***[done] it should display memory contents. Dereference ***/
 //}
 
 }

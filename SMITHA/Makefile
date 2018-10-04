@@ -8,9 +8,10 @@
 ## Code Begin ##
 CC= gcc  #defining compiler
 CFLAGS= -c  #compilation variable
-#DEPS= headers.h
+DEPS= headers.h
 
 Functions= main.o help.o allocate.o free_memory.o write_memory.o display_memory.o invertbits.o write_pattern.o verify_pattern.o 
+SRC_Functions = allocate.c free_memory.c write_memory.c display_memory.c invertbits.c write_pattern.c verify_pattern.c exit.c
 
 # Build target
 all: final
@@ -19,37 +20,37 @@ final: $(Functions)
 	$(CC) $(Functions) -o final
 	-@echo 'Build successful, enter "./final" to run'
 
-main.o: main.c #main.h
+main.o: main.c main.h $(SRC_Functions)
 	$(CC) $(CFLAGS) main.c
 
-help.o: help.c help.h main.c
+help.o: help.c help.h 
 	$(CC) $(CFLAGS) help.c
 
 allocate.o: allocate.c allocate.h 
 	$(CC) $(CFLAGS) allocate.c
 
 
-display_memory.o: display_memory.c display_memory.h
+display_memory.o: display_memory.c display_memory.h allocate.c write_memory.c $(DEPS)
 	$(CC) $(CFLAGS) display_memory.c 
 
 
-free_memory.o: free_memory.c free_memory.h
+free_memory.o: free_memory.c free_memory.h allocate.c $(DEPS)
 	$(CC) $(CFLAGS) free_memory.c
 
 
-write_memory.o: write_memory.c write_memory.h
+write_memory.o: write_memory.c write_memory.h allocate.c $(DEPS)
 	$(CC) $(CFLAGS) write_memory.c
 
 
-invertbits.o: invertbits.c invertbits.h
+invertbits.o: invertbits.c invertbits.h allocate.c $(DEPS)
 	$(CC) $(CFLAGS) invertbits.c
 
 
-write_pattern.o: write_pattern.c write_pattern.h
+write_pattern.o: write_pattern.c write_pattern.h $(DEPS)
 	$(CC) $(CFLAGS) write_pattern.c
 
 
-verify_pattern.o: verify_pattern.c verify_pattern.h
+verify_pattern.o: verify_pattern.c verify_pattern.h write_pattern.c $(DEPS)
 	$(CC) $(CFLAGS) verify_pattern.c 
 
 #All .o files should depend upon respective .c files and headers.h file (DEPS)

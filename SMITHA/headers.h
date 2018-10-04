@@ -8,5 +8,5 @@ void write_memory();
 void invertbits();
 void write_pattern();
 void verify_pattern();
-
+void exit();
 #include<stdint.h>

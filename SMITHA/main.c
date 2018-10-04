@@ -64,13 +64,15 @@ void test_func(char x)
 }
 
 void main(){
- char user1, user2;
-do{
+char user1, user2;
  printf("Enter 'H' for the list of available commands.\n");
+
+do{
+// printf("Enter 'H' for the list of available commands.\n");
  scanf("%c",&user1);
  test_func(user1);
  printf("Enter the next opcode you wish to execute \n");
  scanf("%c",&user2);
 }while ((user2) != 'E'); 
-
+printf("Exit!");
 }

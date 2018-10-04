@@ -18,19 +18,20 @@ uint32_t value;
 printf("Enter the index of the memory location you wish to update.\n");
 
 printf("Available memory index range: %d to %d.\n", st_index,n_bits);
-printf("Available memory location range: %ls to %ls.\n", st_addr,st_addr + n_bits - 1);
+printf("Available memory location range: %x to %x.\n", st_addr,st_addr + n_bits - 1);
 
 scanf("%d",&user_index);
 
 printf("Enter the value you wish to write into address \n");
 scanf("%x",&value);
 
-if ((user_index <= en_index)&&(user_index >= st_index)){
+//if ((user_index <= en_index)&(user_index >= st_index)){
 *(st_addr + user_index - 1 )=value;
 
-printf("The updated value at index %d is %d", user_index,value);
-}
-else (printf("Error: Index value should not go beyond start-index and end-index"));
+printf("The updated value at index %d is %x", user_index,value);
+//}
+//else (printf("Error: Index value should not go beyond start-index and end-index"));
+
 }
 
 
