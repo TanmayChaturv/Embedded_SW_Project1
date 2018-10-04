@@ -1,9 +1,10 @@
 #include<stdio.h>
-#include"display_memory.h"
+#include"inc/display_memory.h"
 #include<stdint.h>
-#include"allocate.h"
-#include"global_variables.h"
-#include"headers.h"
+
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/allocate.h"
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/global_variables.h"
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/headers.h"
 
 
 void display_memory(){
@@ -22,6 +23,7 @@ if((local_index <=en_index)&(local_index >=st_index))
 	printf("Stored value in HEX is %x\n\n ",*(st_addr + local_index - 1));
 }
 else printf("Error: Index value should not go beyond start-index: %d and end-index: %d\n\n", st_index, en_index);
+
 }
 
 

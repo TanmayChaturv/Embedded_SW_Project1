@@ -1,10 +1,12 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"exec_time.h"
-#include"invertbits.h"
-#include"global_variables.h"
 #include<stdint.h>
 #include<time.h>
+
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/exec_time.h"
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/invertbits.h"
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/global_variables.h"
+
 
 void invertbits();
 

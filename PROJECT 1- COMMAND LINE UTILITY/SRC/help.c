@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"help.h"
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/help.h"
 #include<stdint.h>
-//#include"main.h"
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/headers.h"
 
 void help();
 

@@ -1,20 +1,15 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"allocate.h"
 #include<stdint.h>
-#include"global_variables.h"
-#include"exec_time.h"
+
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/allocate.h"
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/global_variables.h"
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/exec_time.h"
 
 
 void verify_pattern();
 
-//void main(){
-/*extern*/ uint32_t output_verify;
-//uint32_t start_clock = 0;
-//uint32_t end_clock = 1;
-	
-/*** see if attribution required for clock functionality ***/
-//volatile double exec_time(start_clock); //Clock Start//
+ uint32_t output_verify;
 
 void verify_pattern(){
 uint32_t start_clock = 0;
@@ -22,22 +17,10 @@ uint32_t end_clock = 1;
 
 (double)exec_time(start_clock); //CLOCK START//
 
-/*extern uint32_t* st_addr;
-extern uint32_t st_index;
-extern uint32_t en_index;
-extern uint32_t n_bits;
-extern uint32_t user_index;*/
 u_int16_t seed;
-//extern uint32_t output_write;
-
 
 printf("Enter the index from where you wish to verify the pattern \n");
 scanf("%d",&user_index);
-
-//printf("Enter the number of 32-bit words you would like to allocate for the pattern \n ");
-//scanf("%d", &n_bits);
-
-//extern uint32_t allocated_memory_vp=(int*)malloc(n * 4);
 
 printf("Enter a seed value which is any number within the range 1111-9999 \n ");
 scanf("%hd", &seed);
@@ -56,7 +39,7 @@ printf("The pseudo random generated number is %d \n ", abs(output_verify));
 
 *((volatile uint32_t *)(st_addr + user_index - 1))=output_verify; 
 
-if(output_verify == output_write){ /*** is allocation required? & (allocated_memory_vp==allocated_memory_wp) ***/
+if(output_verify == output_write){ 
 	printf("pattern verified\n");
 	double time_calc = exec_time(end_clock);
 	printf("execution time in micro seconds = %f\n", time_calc*1000000);

@@ -1,7 +1,15 @@
+
+
+/** Reference for implementing lookup table : https://stackoverflow.com/questions/30364984/c-lookup-string-by-value **/
+/** It was taken as a reference template code and was improvised to implement a lookup table with function pointers and call by value **/
+
 #include<stdio.h>
 #include<stdlib.h>
-#include"headers.h"
 #include<stdint.h>
+
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/headers.h"
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/main.h"
+
 
 int comp_id_string( const void* key, const void* element);
 const char * get_func(char x);
@@ -35,7 +43,6 @@ int comp_id_string( const void* key, const void* element)
     char key_id     = ((struct function_map*) key)->opcode;
     char element_id = ((struct function_map*) element)->opcode;
 
-   // key_id, element_id, element, &func[0], &func[1]);
     if (key_id < element_id) return -1;
     if (key_id > element_id) return  1;
     return 0;
@@ -69,12 +76,12 @@ char user1, user2;
  printf(">>");
 
 do{
-// printf("Enter 'H' for the list of available commands.\n");
  scanf("%c",&user1);
  test_func(user1);
  printf("Enter the next opcode you wish to execute:\n");
-printf("\n>>");
+ printf("\n>>");
  scanf("%c",&user2);
 }while ((user2) != 'E'); 
+
 printf("Exit!");
 }

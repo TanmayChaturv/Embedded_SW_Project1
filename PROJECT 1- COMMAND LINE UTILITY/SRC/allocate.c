@@ -1,9 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdint.h>
-#include"allocate.h"
-#include"headers.h"
-#include"global_variables.h"
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/allocate.h"
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/headers.h"
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/global_variables.h"
 
 void allocate(){
 printf("'Allocate' function:\n");
@@ -11,8 +11,8 @@ printf("'Allocate' function:\n");
 printf("You have entered the command to allocate memory.\n");
 printf("Enter the number of 32-bit words you would like to allocate: \n ");
 
-st_index = 1;
-en_index = 0;
+st_index = 1; //global variable
+en_index = 0; //global variable
 
 printf("\n>>");
 scanf("%d",&n_bits); 
@@ -27,15 +27,14 @@ if (st_addr != NULL){
 
 			printf("The end-address of the allocated memory is %p, and location index is %d. \n\n",st_addr +n_bits - 1, en_index + n_bits ); 
 
-			}
+			       }
 
-		else {
-			printf("'%d' 32-bits memory locations have been successfully allocated!\n",n_bits);
-                	printf("The start-address of the allocated memory is %p, and location index is %d.\n\n",st_addr, st_index);
+		else {printf("'%d' 32-bits memory locations have been successfully allocated!\n",n_bits);
+                      printf("The start-address of the allocated memory is %p, and location index is %d.\n\n",st_addr, st_index);
 		     }
-		}  
+		     }  
 	else printf("Error! Reinvoke Allocate function and enter a number more than 0. \n\n");
-	}
+	             }
 else printf("Error! Null pointer returned, no memory allocated.\n\n");
 }
 

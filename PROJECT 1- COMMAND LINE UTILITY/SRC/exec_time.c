@@ -1,6 +1,8 @@
+/**[Calculation Reference: https://stackoverflow.com/questions/5248915/execution-time-of-c-program] **/
+
 #include<stdio.h>
 #include<time.h>
-#include"exec_time.h"
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/exec_time.h"
 
 double time_calc = 0;
 double* time_ptr = &time_calc;
@@ -12,11 +14,12 @@ switch(time_state){
 	case (0):
 		*time_ptr = clock();
 		return 0;
-		break;
+	break;
 
 	case (1):
 		*time_ptr = (clock() - *time_ptr);
-		return(*time_ptr/CLOCKS_PER_SEC); //[Calculation Reference: https://stackoverflow.com/questions/5248915/execution-time-of-c-program]
-
+		return(*time_ptr/CLOCKS_PER_SEC); 
+        break;
 }
+
 }

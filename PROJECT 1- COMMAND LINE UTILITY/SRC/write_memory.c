@@ -1,8 +1,9 @@
 #include<stdio.h>
-#include"allocate.h"
-#include"global_variables.h"
 #include<stdint.h>
-#include"headers.h"
+
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/allocate.h"
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/global_variables.h"
+#include"Embedded_SW_Project1/PROJECT 1- COMMAND LINE UTILITY/INC/headers.h"
 
 
 void write_memory();
@@ -35,6 +36,7 @@ if ((user_index <= en_index)&(user_index >= st_index))
 	else printf("Error! Only accepts value >= 0\n\n");
 }
 else printf("Error: Index value should not go beyond start-index: %d and end-index: %d\n\n", st_index, en_index);
+
 }
 
 
