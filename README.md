@@ -19,6 +19,26 @@ A brief description of the commands and their functionalities
         User defines the number of 32-bit words they would like to allocate. Dyanmic memory allocation takes place.
         
 'D' -> invokes the display_memory function 
-        It displays dynamically allocated memory. The user may refernce this address by the means of index as well.        
- 
- 
+        It displays dynamically allocated memory. The user may refernce this address by the means of index as well. 
+
+'W' -> invokes the write_memory function 
+        User enters the memory location index to update its values and then enter the value to be stored in the location.     
+
+'F' -> invokes the free_memory function 
+        frees the memory allocated by malloc function..     
+
+'I' -> invokes the invertbits function 
+        takes input argument as the index of memory location and replaces the value at that location with its respective inverted values     
+
+'P' -> invokes the write_pattern function 
+        takes input as an index to a memory location and a user-specified seed between 1111-9999 and generates a Pseudo random number which is stored at the user specified memory location.     
+
+'V' -> invokes the verify_memory function 
+        takes input as an index to a memory location and a user-specified seed between 1111-9999, that is similar to the seed given in the write_pattern function, and verifies if the randomly generated number is same as the previously generated random number through write_pattern..     
+
+'E' -> invokes the exit_func function 
+        at any time, giving this command will invoke exit_func function which will stop the execution of this command line utility.   
+
+
+
+
