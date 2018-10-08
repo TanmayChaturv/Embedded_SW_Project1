@@ -1,3 +1,5 @@
+/*Global variables used in various memory allocation functions*/
+
 #include<stdint.h>
 
 uint32_t *st_addr; //Base address

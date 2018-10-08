@@ -16,6 +16,7 @@
 void exit_func();
 
 //FUNCTION DEFINITION
+
 void exit_func()
 {
 exit(0);

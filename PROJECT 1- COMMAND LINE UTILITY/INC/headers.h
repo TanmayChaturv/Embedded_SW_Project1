@@ -1,3 +1,9 @@
+/*** Code developed by Tanmay Chaturvedi and Smitha Bhaskar for ECEN5813- Principles of Embedded Software, University of Colorado Boulder
+     Dated:10/07/2018
+     Function Prototypes used in various functions.
+***/
+
+
 #include<stdint.h>
 
 void help();
