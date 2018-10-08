@@ -35,7 +35,20 @@ scanf("%d",&invert_index);
 
 if ((invert_index <= en_index)&(invert_index >= st_index))
 {
-	printf("Original value: 0x%x\n", *(st_addr + invert_index - 1));
+	if (invert_index>1){
+		for(int i=0;i<invert_index;i++){
+	(double)exec_time(start_clock); //CLOCK START//
+	*(st_addr + invert_index-1) = *(st_addr + invert_index-1) ^ (0xFFFFFFFF); //Replaced original data with inverted data//
+ 
+	double time_calc = exec_time(end_clock); //CLOCK END//
+
+	printf("Inverted value at %d : 0x%x\n", i,*(st_addr + invert_index - 1));
+
+	printf("execution time in micro seconds = %f\n\n", time_calc*1000000);
+	invert_index = 0;
+			}
+}
+	else {
 
 	(double)exec_time(start_clock); //CLOCK START//
 	*(st_addr + invert_index-1) = *(st_addr + invert_index-1) ^ (0xFFFFFFFF); //Replaced original data with inverted data//
@@ -46,6 +59,7 @@ if ((invert_index <= en_index)&(invert_index >= st_index))
 
 	printf("execution time in micro seconds = %f\n\n", time_calc*1000000);
 	invert_index = 0;
+		}
 }
 
 else 

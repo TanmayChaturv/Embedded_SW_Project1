@@ -8,5 +8,8 @@
 #include<stdio.h>
 
 //FUNCTION PROTOTYPES
+
 void print();
 void allocate();
+
+#define Max_memory 100 //Can be altered to go upto 1 million for a 32-bit CPU

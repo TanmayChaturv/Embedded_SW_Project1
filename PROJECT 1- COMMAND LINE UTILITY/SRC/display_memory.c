@@ -28,7 +28,12 @@ scanf("%d",&local_index);
 
 if((local_index <=en_index)&(local_index >=st_index))
 {
-	printf("Stored value in HEX is %x\n\n ",*(st_addr + local_index - 1));
+	if (local_index>1){
+		for(int i=0;i<user_index;i++){
+		printf("Stored value in HEX is %x\n\n ",*(st_addr + local_index - 1)); }
+		}
+	else
+		printf("Stored value in HEX is %x\n\n ",*(st_addr + local_index - 1));
 }
 else
 	printf("Error: Index value should not go beyond start-index: %d and end-index: %d\n\n", st_index, en_index);

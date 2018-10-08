@@ -19,5 +19,6 @@ void exit_func();
 
 void exit_func()
 {
+printf("Exiting the Command Line Utility \n");
 exit(0);
 }

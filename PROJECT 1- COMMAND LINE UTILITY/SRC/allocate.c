@@ -13,6 +13,7 @@
 #include"../INC/headers.h"
 #include"../INC/global_variables.h"
 
+
 //FUNCTION DEFINITION
 void allocate(){
 printf("'Allocate' function:\n");
@@ -23,13 +24,14 @@ printf("Enter the number of 32-bit words you would like to allocate: \n ");
 st_index = 1; //global variable
 en_index = 0; //global variable
 
+
 printf("\n>>");
 scanf("%d",&n_bits); 
 
 st_addr=(uint32_t*)malloc(n_bits * 4); //32 bit=4 bytes;
 
 if (st_addr != NULL){	
-	if (n_bits ){
+	if (n_bits<Max_memory ){
 		if (n_bits >=2){
 			printf("'%d' 32-bits memory locations have been successfully allocated! \n",n_bits);
 			printf("The start-address of the allocated memory is %p, and location index is %d.\n",st_addr,st_index ); //gives address range to the user//
@@ -43,7 +45,7 @@ if (st_addr != NULL){
 		     }
 
 		     }  
-	else printf("Error! Reinvoke Allocate function and enter a number more than 0. \n\n");
+	else printf("Error! Reinvoke Allocate function and enter a number not more than %d . \n\n", Max_memory);
 	             }
 
 else printf("Error! Null pointer returned, no memory allocated.\n\n");
