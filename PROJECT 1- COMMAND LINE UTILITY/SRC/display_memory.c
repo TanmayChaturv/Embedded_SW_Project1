@@ -30,7 +30,7 @@ if((local_index <=en_index)&(local_index >=st_index))
 {
 	if (local_index>1){
 		for(int i=0;i<user_index;i++){
-		printf("Stored value in HEX is %x\n\n ",*(st_addr + local_index - 1)); }
+		printf("Stored value in HEX is %x\n\n ",*(st_addr + local_index - 1 + i)); }
 		}
 	else
 		printf("Stored value in HEX is %x\n\n ",*(st_addr + local_index - 1));
