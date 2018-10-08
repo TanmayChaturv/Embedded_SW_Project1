@@ -27,14 +27,17 @@ uint16_t seed;
 uint32_t start_clock = 0;
 uint32_t end_clock = 1;
 
-(double)exec_time(start_clock);
-
 
 printf("Enter the index of address where you wish to store the pattern \n");
+printf("\n>>");
 scanf("%d",&user_index);
 
 printf("Enter a seed value which is any number within the range 1111-9999 \n ");
+printf("\n>>");
 scanf("%hd", &seed);
+
+
+(double)exec_time(start_clock);
 
 //pseudo random number generator algorithm
 
@@ -46,7 +49,7 @@ x^=x << 17;
 
  output_write =x;
 
-printf("The pseudo random generated number is %d \n ", output_write);
+printf("The pseudo random generated number is %d \n ",abs(output_write));
 
 *((volatile uint32_t *)(st_addr + user_index - 1))=output_write; 
 double time_calc = exec_time(end_clock);

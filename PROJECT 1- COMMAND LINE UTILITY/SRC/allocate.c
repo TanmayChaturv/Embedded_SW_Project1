@@ -45,7 +45,7 @@ if (st_addr != NULL){
 		     }
 
 		     }  
-	else printf("Error! Reinvoke Allocate function and enter a number not more than %d . \n\n", Max_memory);
+	else printf("Error! Reinvoke Allocate function and enter a number not more than %d . \n\n", Max_memory-1);
 	             }
 
 else printf("Error! Null pointer returned, no memory allocated.\n\n");

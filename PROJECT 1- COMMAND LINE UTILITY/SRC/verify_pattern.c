@@ -24,16 +24,19 @@ void verify_pattern(){
 uint32_t start_clock = 0;
 uint32_t end_clock = 1;
 
-(double)exec_time(start_clock); //CLOCK START//
 
 u_int16_t seed;
 
 printf("Enter the index from where you wish to verify the pattern \n");
+printf("\n>>");
 scanf("%d",&user_index);
+
 
 printf("Enter a seed value which is any number within the range 1111-9999 \n ");
 scanf("%hd", &seed);
+printf("\n>>");
 
+(double)exec_time(start_clock); //CLOCK START//
 //pseudo random number generator algorithm
 
 __uint64_t x=seed;
@@ -49,8 +52,8 @@ printf("The pseudo random generated number is %d \n ", abs(output_verify));
 *((volatile uint32_t *)(st_addr + user_index - 1))=output_verify; 
 
 if(output_verify == output_write){ 
-	printf("pattern verified\n");
 	double time_calc = exec_time(end_clock);
+	printf("pattern verified\n");
 	printf("execution time in micro seconds = %f\n", time_calc*1000000);
 }
 else {

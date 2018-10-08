@@ -35,7 +35,7 @@ struct function_map {
 static struct function_map func[9] = {
      {'A' , allocate},
      {'D' , display_memory},
-     {'E' , exit},
+     {'E' , exit_func},
      {'F' , free_memory},
      {'H' , help},
      {'I' , invertbits},
@@ -68,14 +68,14 @@ const char * get_func(char x)
     if (!fs) printf( "invalid opcode \n");
      
 
-    return fs->str;
+    return (const char *)fs->str;
 }
 
 //FUNCTION TO TEST THE USER INPUT
 void test_func(char x)
 {
  
- handler_t func_ptr = get_func(x);
+ handler_t func_ptr = (void *)get_func(x);
  func_ptr();
 
 }
