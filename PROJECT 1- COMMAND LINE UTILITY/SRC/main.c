@@ -1,16 +1,22 @@
+/*** Code developed by Tanmay Chaturvedi and Smitha Bhaskar for ECEN5813- Principles of Embedded Software, University of Colorado Boulder
+     Dated:10/07/2018
+     The code describes lookup table usef for mapping the opcodes to their rfunction calls.
+     Reference for implementing lookup table : https://stackoverflow.com/questions/30364984/c-lookup-string-by-value 
+     It was taken as a reference template code and was improvised to implement a lookup table with function pointers and call by value 
+     bsearch() is the functionality we have implemented to search the lookup table for the user specified op-code.
 
+***/
 
-/** Reference for implementing lookup table : https://stackoverflow.com/questions/30364984/c-lookup-string-by-value **/
-/** It was taken as a reference template code and was improvised to implement a lookup table with function pointers and call by value **/
+//HEADER FILES
 
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdint.h>
-
 #include"../INC/headers.h"
 #include"../INC/main.h"
 
 
+//FUNCTION PROTOTYPES
 int comp_id_string( const void* key, const void* element);
 const char * get_func(char x);
 void test_func(char x);
@@ -24,6 +30,7 @@ struct function_map {
 };
 
 
+//LOOKUP TABLE IMPLEMENTED THROUGH STRUCTURES
 
 static struct function_map func[9] = {
      {'A' , allocate},
@@ -38,6 +45,7 @@ static struct function_map func[9] = {
 
      };
 
+//FUNCTION TO COMPARE THE USER SPECIFIED OPCODE AND THE OPCODES IN THE LOOKUP TABLE
 int comp_id_string( const void* key, const void* element)
 {
     char key_id     = ((struct function_map*) key)->opcode;
@@ -48,6 +56,7 @@ int comp_id_string( const void* key, const void* element)
     return 0;
 }
 
+//bsearch() IMPLEMENTATION
 const char * get_func(char x)
 {
     
@@ -62,6 +71,7 @@ const char * get_func(char x)
     return fs->str;
 }
 
+//FUNCTION TO TEST THE USER INPUT
 void test_func(char x)
 {
  
@@ -70,7 +80,8 @@ void test_func(char x)
 
 }
 
-void main(){
+int main(){
+
 char user1, user2;
  printf("Enter 'H' for the list of available commands.\n");
  printf(">>");
@@ -84,4 +95,5 @@ do{
 }while ((user2) != 'E'); 
 
 printf("Exit!");
+
 }

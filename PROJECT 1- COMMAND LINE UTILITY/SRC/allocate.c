@@ -1,3 +1,11 @@
+/*** Code developed by Tanmay Chaturvedi and Smitha Bhaskar for ECEN5813- Principles of Embedded Software, University of Colorado Boulder
+     Dated:10/07/2018
+     The code describes the dynamic allocation of memory using the malloc() function in C programming. 
+     The user specifies the number of 32 bit words he wishes to allocate. 
+     The base address and the index are global variables which are access in other functions as well.
+***/
+
+//HEADER FILES
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdint.h>
@@ -5,6 +13,7 @@
 #include"../INC/headers.h"
 #include"../INC/global_variables.h"
 
+//FUNCTION DEFINITION
 void allocate(){
 printf("'Allocate' function:\n");
 
@@ -32,10 +41,13 @@ if (st_addr != NULL){
 		else {printf("'%d' 32-bits memory locations have been successfully allocated!\n",n_bits);
                       printf("The start-address of the allocated memory is %p, and location index is %d.\n\n",st_addr, st_index);
 		     }
+
 		     }  
 	else printf("Error! Reinvoke Allocate function and enter a number more than 0. \n\n");
 	             }
+
 else printf("Error! Null pointer returned, no memory allocated.\n\n");
+
 }
 
 
