@@ -1,36 +1,26 @@
 #include<stdio.h>
+
 #include<stdint.h>
-#include<strings.h>
 
-typedef struct
+#include<stdlib.h>
 
-{
-
-              char *Buffer;
-
-              int Length;
-
-              int Ini;
-
-              int Outi;
-
-} ring_t;
+#include "ring.h"
 
  
 
 //Function Prototypes
 
-#ifndef RING_H
+ 
 
-#define RING_H
+status init(ring_t *ring , int length); //Initialize the buffer
 
-ring_t *init( int length ); //Initialize the buffer
+status insert( ring_t *ring, int8_t data ); //Insert data
 
-int insert( ring_t *ring, char data ); //Insert data
+status remove( ring_t *ring, int8_t *data ); //Remove data
 
-int remove( ring_t *ring, char *data ); //Remove data
+status entries( ring_t *ring );
 
-int entries( ring_t *ring );
+status deleteBuffer(ring_t *ring);
 
  
 
@@ -38,17 +28,19 @@ int entries( ring_t *ring );
 
 //Function definition
 
-//Method 1
-
-int init(ring_t *ring , int length){
-
-              if(Length<=0)
-
-                           return NULL;
+ 
 
  
 
-              ring->Buffer=(char *)malloc(length);
+status init(ring_t *ring , int length){
+
+              if(Length<=0)
+
+                           return FAIL;
+
+              else{
+
+              ring->Buffer=(int8_t *)malloc(sizeof(int8_t)* length);
 
               ring->Length=length;
 
@@ -56,255 +48,154 @@ int init(ring_t *ring , int length){
 
               ring->Outi=0;
 
- 
+              ring->counter=0;
 
-              return ring->Buffer==NULL ? -1:0;
+                   }
+
+return ring->Buffer==NULL ? FAIL:SUCCESS;
 
 }
 
  
 
-ring_t my_ring , *my_ringp=&my_ring;
-
-init(my_ringp,100);
-
  
 
-//Method 2
-
- 
-
-ring_t *init(int length)
+status insert( ring_t *ring, int8_t data )
 
 {
 
-              ring_t *rtnp=malloc(length+sizeof(*rtnp));
+              if(ring == NULL)
 
-              rtnp->Buffer=rtnp+1;
-
-              rtnp->Ini=0;
-
-              rtnp->Outi=0;
-
-              return rtnp;
-
-}
+                           return FAIL;
 
  
 
-int insert( ring_t *ring, char data )
+              else if((ring -> counter) == (ring -> length))
 
-{
-
-              if ((Ini == 0 && Outi == size-1) ||
-
-            (Outi == (Ini-1)%(size-1)))
-
-    {
-
-        printf("\nQueue is Full");
-
-        return -1 ;
-
-    }
-
-  
-
-    else if (Ini == -1) /* Insert First Element */
-
-    {
-
-        Ini = Outi = 0;
-
-        arr[Outi] = value;
-
-    }
-
-  
-
-    else if (Outi == size-1 && Ini != 0)
-
-    {
-
-        Outi = 0;
-
-        arr[Outi] = value;
-
-    }
-
-  
-
-    else
-
-    {
-
-        Outi++;
-
-        arr[Outi] = value;
-
-    }
-
-   return 0;
-
-}
+              return BUFFER_FULL;
 
  
 
-int remove( ring_t *ring, char *data ){
+              else
 
-              if (Ini == -1)
+             {
 
-    {
+                           *ring->Ini = data;
 
-        printf("\nQueue is Empty");
+                          ring -> Ini++;
 
-        return -1;
-
-    }
-
-  
-
-    int data = arr[Ini];
-
-    arr[Ini] = -1;
-
-    if (Ini == Outi)
-
-    {
-
-        Ini = -1;
-
-        Outi = -1;
-
-    }
-
-    else if (Ini == size-1)
-
-        Ini = 0;
-
-    else
-
-        Ini++;
-
-  
-
-    return data;
-
-}
-
- 
-
-int main()
-
-{
-
-    int choice;
-
-    int userdata;
-
-    int result;
-
-    ring_t buffer;
-
-    buffer.Outi=buffer.Ini=-1;
-
-    while(1)
-
-    {
-
-       printf("1. insert:");
-
-       printf("2. remove:");
-
-       printf("3. exit:");
-
-       switch(choice)
-
-       {
-
-           case 1:
-
-           {
-
-           printf("Enter the data to be written in the circular buffer\n");
-
-           scanf("%d",&userdata);
-
-           result=insert(&buffer,userdata);
-
-           break;
-
- 
-
-           case 2:
-
-           printf("Enter the data to be removed in the circular buffer\n");
-
-           scanf("%d",&userdata);
-
-           result=remove(&buffer,userdata);
-
-           break;
-
-          
-
-           case 3:
-
-            exit(1);
-
-            break;
-
- 
-
-           default:
-
-            printf("\Wrong choice.");
-
-            break;
-
-       }
-
- 
-
-    }
-
-    return 0;
-
-}
-
- 
-
-//Unit testing
-
- 
-
-test1(void)
-
-{
-
- 
-
-              ring_t my_ring,*my_ringp=&my_ring;
-
-              init(my_ringp,100);
-
-              assert(my_ringp->Length==100); //Implement encapsulation when doing in C++
-
- 
-
-              //If length variable of the structure was inaccessible use this method:
-
-              for(int i=0;i<100;i++)
-
-              {
-
-                           assert(insert(my_ringp,'a')==0);
+                           ring-> counter++;
 
               }
 
- 
-
-              assert(insert(my_ringp,'a')==-1);
+             return BUFFER_UPDATED;
 
 }
 
+ 
+
+status remove( ring_t *ring, int8_t data )
+
+{
+
+              if(ring == NULL)
+
+                           return FAIL;
+
+             
+
+              else if (Ini == -1)
+
+        return BUFFER_EMPTY;
+
+     
+
+   else
+
+             {
+
+                           data= *ring->Outi;
+
+                           ring->Outi++;
+
+                           ring->counter--;
+
+              }
+
+             return BUFFER_UPDATED;
+
+}
+
+ 
+
+status deleteBuffer(ring_t *ring)
+
+{
+
+ 
+
+              if(ring == NULL)
+
+                           return FAIL;
+
+              else{
+
+             free( ring-> buffer );
+
+              }
+
+             return SUCCESS;
+
+}
+
+ 
+
+status entries( ring_t *ring )
+
+{
+
+              if(ring == NULL)
+
+                           return FAIL;
+
+              {
+
+    else if (Ini == -1)
+
+              return BUFFER_EMPTY;
+
+   
+
+    printf("\nElements in Circular Queue are: ");
+
+    if (Outi >= Ini)
+
+    {
+
+        for (int i = Ini; i <= Outi; i++)
+
+            printf("%d ",ring->buffer[i]);
+
+    }
+
+    else
+
+    {
+
+        for (int i = Ini; i <length; i++)
+
+            printf("%d ", ring->buffer[i]);
+
+  
+
+        for (int i = 0; i <= Outi; i++)
+
+            printf("%d ", ring->buffer[i]);
+
+    }
+
+}
+
+return SUCCESS;
+
+}
