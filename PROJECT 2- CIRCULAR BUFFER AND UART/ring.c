@@ -16,7 +16,7 @@ status init(ring_t *ring , int length); //Initialize the buffer
 
 status insert( ring_t *ring, int8_t data ); //Insert data
 
-status remove( ring_t *ring, int8_t *data ); //Remove data
+status removed( ring_t *ring, int8_t data ); //Remove data
 
 status entries( ring_t *ring );
 
@@ -34,7 +34,7 @@ status deleteBuffer(ring_t *ring);
 
 status init(ring_t *ring , int length){
 
-              if(Length<=0)
+              if(length<=0)
 
                            return FAIL;
 
@@ -80,7 +80,7 @@ status insert( ring_t *ring, int8_t data )
 
              {
 
-                           *ring->Ini = data;
+                           *ring->Outi = data;
 
                           ring -> ((Ini+1)%length); //wrapping of the array to form a circular buffer
 
@@ -94,7 +94,7 @@ status insert( ring_t *ring, int8_t data )
 
  
 
-status remove( ring_t *ring, int8_t data )
+status removed( ring_t *ring, int8_t data )
 
 {
 
@@ -114,7 +114,7 @@ status remove( ring_t *ring, int8_t data )
 
              {
 
-                           data= *ring->Outi;
+                           data= *ring->Ini;
 
                            ring->((Outi+1)%length);
 

@@ -1,5 +1,5 @@
+#ifndef __RING_H__
 #define __RING_H__
-
  
 
 #include <stdint.h>
@@ -60,7 +60,7 @@ status init(ring_t *ring , int length); //Initialize the buffer
 
 status insert( ring_t *ring, int8_t data ); //Insert data
 
-status remove( ring_t *ring, int8_t *data ); //Remove data
+status removed( ring_t *ring, int8_t data ); //Remove data
 
 status entries( ring_t *ring );
 
