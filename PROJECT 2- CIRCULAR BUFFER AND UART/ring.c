@@ -116,7 +116,7 @@ status remove( ring_t *ring, int8_t data )
 
                            data= *ring->Outi;
 
-                           ring->Outi++;
+                           ring->((Outi+1)%length);
 
                            ring->counter--;
 
