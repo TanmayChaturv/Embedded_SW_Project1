@@ -42,8 +42,8 @@ void uart_init_rx(void)
 	UART0->C1	=	__UART0_NO_PRTY_;	/*Parity disabled*/
 	UART0->C2	|=	__UART0_RXPOLL_EN_;	/*Receiver Enable Polling*/
 	SIM->SCGC5	|=	__PORTA_CLK_EN_;	/*Clk enable for PORTA*/
-	PORTA->PCR[2]	=	__PORTA_CLK_EN_;	/*MUX; Set to Alternative 2 for UART0*/
-	delay();						/*Delay for configurations to get stable*/
+	PORTA->PCR[2]	=	__PORTA_MUX_UART0_;	/*MUX; Set to Alternative 2 for UART0*/
+	delay();				/*Delay for configurations to get stable*/
 }
 
 /*Monitor Status Reg 1, bit RDRF and poll if rxbuf empty*/

@@ -34,9 +34,10 @@ void uart_init_tx(void)
 	UART0->C1	=	__UART0_8BIT_;		/*8-Bit mode*/
 	UART0->C1	=	__UART0_NO_PRTY_;	/*Parity disabled*/
 	UART0->C2	|=	__UART0_TXPOLL_EN_;	/*Transmitter Enable Polling*/
+	UART0->C2	&=	~(__UART0_RXINTP_EN_);	/*Disable interrupt*/
 	SIM->SCGC5	|=	__PORTA_CLK_EN_;	/*Clk enable for PORTA*/
 	PORTA->PCR[2]	=	__PORTA_MUX_UART0_;	/*MUX; Set to Alternative 2 for UART0*/
-	delay();						/*Delay for configurations to get stable*/
+	delay();				/*Delay for configurations to get stable*/
 }
 
 /*Monitor Status Reg 1, bit TDRE and poll if txbuf empty*/
@@ -44,6 +45,7 @@ void txbuf_status(void)
 {
 	while(!((UART0->S1 &= 0x80)))	/*Polls till 7th Bit, TDRE, is cleared, meaning wait till TX buffer empty*/
 	{
+		//PRINTF("\n\r checking status\n\r");
 	}
 }
 
@@ -54,7 +56,9 @@ void delay(void)
 
 void tx_data_poll(char data_tx)
 {
+	uart_init_tx();
 	UART0->D = data_tx;
 	txbuf_status();
+	UART0->C2	|=	(__UART0_RXINTP_EN_);
 }
 

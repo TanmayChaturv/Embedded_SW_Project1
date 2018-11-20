@@ -21,15 +21,7 @@
 
 
 
-void rx_poll()
-{
-	uart_init_rx();
-	delay();
-	rx_data_poll();
-}
-
-
-void uart_init_rx(void)
+void uart_init_rx_intp(void)
 {
 	SIM->SCGC4	|=	__UART0_CLK_EN_;	/*Enable Clk for UART0*/
 	SIM->SOPT2	|=	__CLK_SRC_FLLCLK_;	/*Select Clk source*/
@@ -40,27 +32,19 @@ void uart_init_rx(void)
 	UART0->C1	=	__UART0_8BIT_;		/*8-Bit mode*/
 	UART0->C1	=	__UART0_NO_PRTY_;	/*parity disabled*/
 	UART0->C2	|=	__UART0_RXINTP_EN_;	/*Receiver Enable*/
+	NVIC->ISER[0] |= 0x00001000;
 	SIM->SCGC5	|=	__PORTA_CLK_EN_;	/*Clk enable for PORTA*/
 	PORTA->PCR[2]	=	__PORTA_MUX_UART0_;	/*MUX; Set to Alternative 2 for UART0*/
-	delay();								/*Delay for configurations to get stable*/
+	delay();					/*Delay for configurations to get stable*/
 }
 
-/*Monitor Status Reg 1, bit RDRF and poll if rxbuf empty*/
-void rxbuf_status(void)
-{
-	while(!((UART0->S1 &= 0x20)))	/*Polls till 2th Bit, RDRF, is cleared, meaning wait till RX buffer empty*/
-	{
-	}
-}
 
-void delay(void)
+/*IRQ handler for UART0*/
+void UART0_IRQHandler(void)
 {
-	for(int i = 0; i<1000; i++);
-}
-
-void rx_data_poll(void)
-{
-	rxbuf_status();	/*polling*/
+	//PRINTF("in ISR");
+	LED2_TOGGLE;
 	char data_rx = UART0->D;
 	tx_data_poll(data_rx);
 }
+

@@ -27,5 +27,6 @@ void rxbuf_status(void);
 void delay(void);
 void tx_data_poll(char);
 void rx_data_poll(void);
+void uart_init_rx_intp(void);
 
 #include<stdint.h>
