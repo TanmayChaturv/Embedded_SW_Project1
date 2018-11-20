@@ -82,7 +82,7 @@ status insert( ring_t *ring, int8_t data )
 
                            *ring->Ini = data;
 
-                          ring -> Ini++;
+                          ring -> ((Ini+1)%length); //wrapping of the array to form a circular buffer
 
                            ring-> counter++;
 
