@@ -10,7 +10,7 @@
 
 #define	__UART0_CLK_EN_		(0x0400)		/*Enable Clk for UART0*/
 #define	__CLK_SRC_FLLCLK_		(0x04000000)		/*Select Clk source*/
-#define	__UART0_DISBL_		(0x00)	/*Disabling UART0 before config*/
+#define	__UART0_DISBL_		(0x00)		/*Disabling UART0 before config*/
 #define	__UART0_8BIT_		(0x00)		/*8-Bit mode*/
 #define	__UART0_NO_PRTY_	(0x00)		/*Parity Disabled*/
 #define	__UART0_RXPOLL_EN_		(0x04)		/*Receiver Enable Polling*/
