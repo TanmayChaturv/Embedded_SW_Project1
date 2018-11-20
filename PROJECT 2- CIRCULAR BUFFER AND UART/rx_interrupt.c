@@ -32,7 +32,7 @@ void uart_init_rx_intp(void)
 	UART0->C1	=	__UART0_8BIT_;		/*8-Bit mode*/
 	UART0->C1	=	__UART0_NO_PRTY_;	/*parity disabled*/
 	UART0->C2	|=	__UART0_RXINTP_EN_;	/*Receiver Enable*/
-	NVIC->ISER[0] |= 0x00001000;
+	NVIC->ISER[0]	|=	0x00001000;		/*Nested Vec Intp Cntrller(NVIC), Interrupt Service Enable Register(ISER)*/
 	SIM->SCGC5	|=	__PORTA_CLK_EN_;	/*Clk enable for PORTA*/
 	PORTA->PCR[2]	=	__PORTA_MUX_UART0_;	/*MUX; Set to Alternative 2 for UART0*/
 	delay();					/*Delay for configurations to get stable*/
