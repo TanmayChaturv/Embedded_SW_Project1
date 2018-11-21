@@ -70,7 +70,7 @@ status insert( ring_t *ring, int8_t data )
 
  
 
-              else if((ring -> counter) == (ring -> length))
+              else if((ring -> counter) == (ring -> Length))
 
               return BUFFER_FULL;
 
@@ -80,9 +80,9 @@ status insert( ring_t *ring, int8_t data )
 
              {
 
-                           *ring->Outi = data;
+                           ring->Buffer[ring->Outi] = data;
 
-                          ring -> ((Ini+1)%length); //wrapping of the array to form a circular buffer
+                          (ring->Outi +1)%(ring->Length); //wrapping of the array to form a circular buffer
 
                            ring-> counter++;
 
@@ -104,7 +104,7 @@ status removed( ring_t *ring, int8_t data )
 
              
 
-              else if (Ini == -1)
+              else if ((ring->Ini) == -1)
 
         return BUFFER_EMPTY;
 
@@ -114,9 +114,9 @@ status removed( ring_t *ring, int8_t data )
 
              {
 
-                           data= *ring->Ini;
+                           data= ring->Buffer[ring->Ini];
 
-                           ring->((Outi+1)%length);
+                           (ring->Ini +1)%(ring->Length);
 
                            ring->counter--;
 
@@ -140,7 +140,7 @@ status deleteBuffer(ring_t *ring)
 
               else{
 
-             free( ring-> buffer );
+             free( ring-> Buffer );
 
               }
 
@@ -156,25 +156,23 @@ status entries( ring_t *ring )
 
               if(ring == NULL)
 
-                           return FAIL;
+                     return FAIL;
 
-              {
+              else if (ring->Ini == -1)
 
-    else if (Ini == -1)
-
-              return BUFFER_EMPTY;
+                    return BUFFER_EMPTY;
 
    
 
     printf("\nElements in Circular Queue are: ");
 
-    if (Outi >= Ini)
+    if (ring->Outi >= ring->Ini)
 
     {
 
-        for (int i = Ini; i <= Outi; i++)
+        for (int i = ring->Ini; i <= ring->Outi; i++)
 
-            printf("%d ",ring->buffer[i]);
+            printf("%d ",ring->Buffer[i]);
 
     }
 
@@ -182,15 +180,15 @@ status entries( ring_t *ring )
 
     {
 
-        for (int i = Ini; i <length; i++)
+        for (int i = ring->Ini; i < ring->Length; i++)
 
-            printf("%d ", ring->buffer[i]);
+            printf("%d ", ring->Buffer[i]);
 
   
 
-        for (int i = 0; i <= Outi; i++)
+        for (int i = 0; i <= ring->Outi; i++)
 
-            printf("%d ", ring->buffer[i]);
+            printf("%d ", ring->Buffer[i]);
 
     }
 
