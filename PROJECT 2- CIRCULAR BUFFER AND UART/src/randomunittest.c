@@ -70,19 +70,32 @@ int cu_clean_func(void)
 
 void circbuff_init_test(void)
 {
-	/**/
-	CU_ASSERT_EQUAL(buff_init(ptr,10),2);
+
+	/*Checking if pointer not null*/
+	CU_ASSERT_PTR_NOT_NULL(ptr);
+	/*Checking if circbuf init working*/
+	CU_ASSERT_EQUAL(buff_init(ptr,4),2);
+	/*Checking if circbuf init not working with buf len = 0*/
 	CU_ASSERT_NOT_EQUAL(buff_init(ptr,0),2);
+	/*Checking if circbuf init not working with buf len = -1*/
 	CU_ASSERT_EQUAL(buff_init(ptr,-1),3);
 }
 
 
 void circbuff_insert_test(void)
 {
-	CU_ASSERT_EQUAL(buff_insert(ptr,10),4);
-	CU_ASSERT_EQUAL(buff_insert(ptr,20),4);
-	CU_ASSERT_EQUAL(buff_insert(ptr,30),4);
-        CU_ASSERT_EQUAL(buff_insert(ptr,40),4);
+	/*Checking if circbuf element insert working*/
+	CU_ASSERT_EQUAL(buff_insert(ptr,1),4);
+	/*Checking if circbuf element insert working with element's min value, ie 0*/
+	CU_ASSERT_EQUAL(buff_insert(ptr,0),4);
+	/*Checking if circbuf element insert working with element's max value, ie 255*/
+	CU_ASSERT_EQUAL(buff_insert(ptr,255),4);
+	/*Checking if circbuf element insert working with non-zero element value, ie -100*/
+        CU_ASSERT_EQUAL(buff_insert(ptr,-100),4);
+	/*Checking if circbuf element insert NOT working for more than 4 elements*/
+        CU_ASSERT_EQUAL(buff_insert(ptr,5),5);
+        CU_ASSERT_EQUAL(buff_insert(ptr,6),5);
+	
 
 }
 
@@ -92,5 +105,6 @@ void circbuff_remove_test(void)
 	CU_ASSERT_EQUAL(buff_remove(ptr),6);
 	CU_ASSERT_EQUAL(buff_remove(ptr),6);
         CU_ASSERT_EQUAL(buff_remove(ptr),6);
-	CU_ASSERT_EQUAL(buff_remove(ptr),6);
+	/*Checking if circbuf element remove NOT working for more than 4 elements*/
+	CU_ASSERT_EQUAL(buff_remove(ptr),7);
 }
