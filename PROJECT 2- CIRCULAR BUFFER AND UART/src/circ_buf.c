@@ -8,7 +8,7 @@
 #include<stdio.h>
 #include<stdint.h>
 #include<stdlib.h>
-#include "circ_buf.h"
+#include "../inc/circ_buf.h"
 //#include <inttypes.h>
 
 

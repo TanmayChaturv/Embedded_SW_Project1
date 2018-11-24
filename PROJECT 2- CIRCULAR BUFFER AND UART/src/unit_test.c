@@ -70,7 +70,10 @@ int cu_clean_func(void)
 
 void circbuff_init_test(void)
 {
+	/**/
 	CU_ASSERT_EQUAL(buff_init(ptr,10),2);
+	CU_ASSERT_NOT_EQUAL(buff_init(ptr,0),2);
+	CU_ASSERT_EQUAL(buff_init(ptr,-1),3);
 }
 
 
@@ -89,4 +92,5 @@ void circbuff_remove_test(void)
 	CU_ASSERT_EQUAL(buff_remove(ptr),6);
 	CU_ASSERT_EQUAL(buff_remove(ptr),6);
         CU_ASSERT_EQUAL(buff_remove(ptr),6);
+	CU_ASSERT_EQUAL(buff_remove(ptr),6);
 }
