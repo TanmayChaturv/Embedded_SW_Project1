@@ -17,7 +17,8 @@ void tx_poll(char *str)
 {
 	uart_init_tx();
 	while(*str){
-	UART0->D = (*str++);
+	UART0->D = (*str);
+	str++;
 	txbuf_status();
 	}
 }
@@ -29,8 +30,8 @@ void uart_init_tx(void)
 	SIM->SOPT2	|=	__CLK_SRC_FLLCLK_;	/*Select Clk source*/
 	UART0->C2	=	__UART0_DISBL_;		/*Disabling UART0 before config*/
 	UART0->BDH	=	0x00;			/*One stop bit, rest modulo divisor in UART0->BDL*/
-	UART0->BDL	=	0x19;			/*Setting BDL = 25, to be used with OSR = 15 to get 115200 bps with 0.16% precision calculated*/
-	UART0->C4	=	0xF;			/*Baudrate = (Clk Freq)/((OSR + 1)*SBR).. means 48Mhz/((15+1)*25)*/
+	UART0->BDL	=	__UART0_BDL_;			/*Setting BDL = 25, to be used with OSR = 15 to get 115200 bps with 0.16% precision calculated*/
+	UART0->C4	|=	0xF;			/*Baudrate = (Clk Freq)/((OSR + 1)*SBR).. means 48Mhz/((15+1)*25)*/
 	UART0->C1	=	__UART0_8BIT_;		/*8-Bit mode*/
 	UART0->C1	=	__UART0_NO_PRTY_;	/*Parity disabled*/
 	UART0->C2	|=	__UART0_TXPOLL_EN_;	/*Transmitter Enable Polling*/
