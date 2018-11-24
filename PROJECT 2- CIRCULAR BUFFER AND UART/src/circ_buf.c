@@ -9,7 +9,7 @@
 #include<stdint.h>
 #include<stdlib.h>
 #include "circ_buf.h"
-#include <inttypes.h>
+//#include <inttypes.h>
 
 
 //status buff_init(circbuf_t *ptr, int8_t len );	/*Initialize Buffer*/
@@ -19,6 +19,7 @@
 //status buff_Isfull(circbuf_t *ptr );	/*Check if buffer is full. If full, can't insert new element*/
 //status buff_Isempty(circbuf_t *ptr );	/*Check if buffer is empty. If empty, can't delete any element*/
 
+int8_t data;
 
 /**
 * @brief Initiates Circular Buffer
@@ -159,12 +160,12 @@ status flag;
 */
 status buff_remove(circbuf_t *ptr)
 {
-	int8_t data;
 	if( buff_Isempty( ptr ) == BUFF_FULL || buff_Isempty( ptr ) == BUFF_NOT_EMPTY )
 	{
 		printf("inside delete function\n");
 		if( ptr->head == ptr->buffer + ptr->max_len - 1 )	/*check if head is at the last location, should wrap around*/
 		{
+//			int8_t data;
 			printf("\n head is at the last");
 			data = *ptr->head;
 			printf("Content at head = %d at address %p \n", *(ptr->head),ptr->head);
@@ -174,6 +175,7 @@ status buff_remove(circbuf_t *ptr)
 		}
 		else
 		{
+//			int8_t data;
 			data = *ptr->head;
 			printf("Content at head = %d at address %p \n", *(ptr->head),ptr->head);
 			ptr->head++;

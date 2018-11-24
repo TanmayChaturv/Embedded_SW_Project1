@@ -20,13 +20,13 @@ typedef struct
 
               char *Buffer;
 
-              int Length;
+              int8_t Length;
 
-              int Ini;
+              int8_t Ini;
 
-              int Outi;
+              int8_t Outi;
 
-              int counter;
+              int8_t counter;
 
 } ring_t;
 
@@ -56,7 +56,7 @@ typedef enum status
 
  
 
-status init(ring_t *ring , int length); //Initialize the buffer
+status init(ring_t *ring , int8_t length); //Initialize the buffer
 
 status insert( ring_t *ring, int8_t data ); //Insert data
 

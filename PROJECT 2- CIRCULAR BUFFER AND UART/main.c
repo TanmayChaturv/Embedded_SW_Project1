@@ -1,34 +1,42 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<stdint.h>
-#include"ring.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include "../inc/circ_buf.h"
 
-status init(ring_t *ring , int length); //Initialize the buffer
+int8_t j;
 
-status insert( ring_t *ring, int8_t data ); //Insert data
-
-status removed( ring_t *ring, int8_t data ); //Remove data
-
-status entries( ring_t *ring );
-
-status deleteBuffer(ring_t *ring);
-
-
-int main()
+void main()
 {
- ring_t *buffer;
-status bp=init(buffer,100);
-status flag;
+circbuf_t *ptr;
+status bp=buff_init(ptr,3);
+ status flag;
 int8_t udata;
-printf("enter data for the ring buffer");
+
+
+for (j=0; j<3; j++)
+{
+printf("%d\n",j);
+printf("enter data for the ring buffer\n");
 scanf("%d",&udata);
-flag=insert(buffer,udata);
-printf("%s \n",flag);
-printf("\ndata to be removed");
+flag= buff_insert(ptr,udata);
+//printf("Flag is %d \n",flag);
+//j++;
+}
+
+
+printf("Removal\n");
+for (j= 0; j<3; j++)
+{
+flag=buff_remove(ptr);
+printf("Flag is %d \n",flag);
+}
+
+printf("enter data for the ring buffer\n");
 scanf("%d",&udata);
-flag=removed(buffer,udata);
-printf("%s \n",flag);
-return 0;
+flag= buff_insert(ptr,udata);
+printf("Flag is %d \n",flag);
+
+
 }
 
 

@@ -8,11 +8,12 @@
 
  
 
+/*
 //Function Prototypes
 
  
 
-status init(ring_t *ring , int length); //Initialize the buffer
+status init(ring_t *ring , int8_t length); //Initialize the buffer
 
 status insert( ring_t *ring, int8_t data ); //Insert data
 
@@ -20,7 +21,7 @@ status removed( ring_t *ring, int8_t data ); //Remove data
 
 status entries( ring_t *ring );
 
-status deleteBuffer(ring_t *ring);
+status deleteBuffer(ring_t *ring); */
 
  
 
@@ -32,7 +33,7 @@ status deleteBuffer(ring_t *ring);
 
  
 
-status init(ring_t *ring , int length){
+status init(ring_t *ring , int8_t length){
 
               if(length<=0)
 
@@ -70,10 +71,10 @@ status insert( ring_t *ring, int8_t data )
 
  
 
-              else if((ring -> counter) == (ring -> Length))
+/*              else if((ring -> counter) == (ring -> Length))
 
               return BUFFER_FULL;
-
+*/
  
 
               else
@@ -82,7 +83,8 @@ status insert( ring_t *ring, int8_t data )
 
                            ring->Buffer[ring->Outi] = data;
 
-                          (ring->Outi +1)%(ring->Length); //wrapping of the array to form a circular buffer
+                         ring->Outi =  (ring->Outi +1)%(ring->Length); //wrapping of the array to form a circular buffer
+			printf("Outi = %d", ring->Outi);
 
                            ring-> counter++;
 
@@ -104,7 +106,7 @@ status removed( ring_t *ring, int8_t data )
 
              
 
-              else if ((ring->Ini) == -1)
+              else if ((ring->counter) == 0)
 
         return BUFFER_EMPTY;
 
@@ -114,9 +116,9 @@ status removed( ring_t *ring, int8_t data )
 
              {
 
-                           data= ring->Buffer[ring->Ini];
+                           char tmpdata= ring->Buffer[ring->Ini];
 
-                           (ring->Ini +1)%(ring->Length);
+                           ring->Ini = (ring->Ini +1)%(ring->Length);
 
                            ring->counter--;
 
@@ -191,8 +193,6 @@ status entries( ring_t *ring )
             printf("%d ", ring->Buffer[i]);
 
     }
-
-}
 
 return SUCCESS;
 
