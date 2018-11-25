@@ -21,7 +21,7 @@ CFLAGS= -Werror -Wall
 #vpath %.h ../inc
 
 ifeq ($(TESTMETHOD), STATIC)
-	SRCFILES:=circ_buf.c unittest.c
+	SRCFILES:=circ_buf.c unittestwithrand.c
 
 else
 	SRCFILES:=circ_buf.c randomunittest.c
