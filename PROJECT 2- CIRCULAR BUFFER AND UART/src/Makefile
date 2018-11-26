@@ -21,10 +21,10 @@ CFLAGS= -Werror -Wall
 #vpath %.h ../inc
 
 ifeq ($(TESTMETHOD), STATIC)
-	SRCFILES:=circ_buf.c unittestwithrand.c
+	SRCFILES:=circ_buf.c unittest.c
 
 else
-	SRCFILES:=circ_buf.c randomunittest.c
+	SRCFILES:=circ_buf.c unittestwithrand.c
 endif
 
 #else -@echo 'give "STATIC" or "AUTOMATED" as TESTMETHOD arguments.'

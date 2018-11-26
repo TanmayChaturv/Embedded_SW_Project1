@@ -8,8 +8,12 @@
 #include<stdio.h>
 #include<stdint.h>
 #include<stdlib.h>
-#include "../inc/circ_buf.h"
+#include "circ_buf.h"
+#include "headers.h"
 //#include <inttypes.h>
+
+
+/*for enabling tx and rx interrupt*/
 
 
 //status buff_init(circbuf_t *ptr, int8_t len );	/*Initialize Buffer*/
@@ -34,17 +38,21 @@ int8_t data;
 
 status buff_init( circbuf_t *ptr, int8_t length )
 {
+	//tx_poll("In Buff_init");
 	if ( length <= 0 )
 		return BUFF_INIT_FAIL;
 	else{
 		ptr->buffer = (int8_t*)malloc(sizeof(int8_t)*length);
-		if ( ptr->buffer == NULL )
+		if ( ptr->buffer == NULL ){
+			//tx_poll("\n\r NULL ptr\n\r");
 			return BUFF_INIT_FAIL;
+		}
 		else{
 			ptr->head = ptr->buffer;
 			ptr->tail = ptr->buffer;
 			ptr->max_len = length;
 			ptr->counter = 0;
+		//	tx_poll("\n\r Buff init success\n\r");
 			return BUFF_INIT_SUCCESS;
 		}
 	}
@@ -75,6 +83,7 @@ status buff_Isfull( circbuf_t *ptr )
 			return BUFF_EMPTY;
 		/*if buffer partially full/empty*/
 		else return BUFF_NOT_FULL;
+		//tx_poll("\n\r Check Full Performed\n\r");
 	}
 }
 
@@ -102,6 +111,7 @@ status buff_Isempty( circbuf_t *ptr )
 			return BUFF_FULL;
 		/*if buffer partially full/empty*/
 		else return BUFF_NOT_EMPTY;
+		//tx_poll("\n\r Check Empty Performed\n\r");
 	}
 }
 
@@ -119,25 +129,25 @@ status buff_Isempty( circbuf_t *ptr )
 */
 status buff_insert( circbuf_t *ptr, int8_t data )
 {
-status flag;
-	flag=buff_Isfull(ptr);
-	printf("%d",flag);
+//status flag;
+//	flag=buff_Isfull(ptr);
+	//printf("%d",flag);
 	if( (buff_Isfull( ptr ) == BUFF_EMPTY) || (buff_Isfull( ptr ) == BUFF_NOT_FULL) )
 	{
 		if( ptr->tail == ptr->buffer + ptr->max_len - 1 )	/*check if tail is at the last location, should wrap around*/
 		{
-			printf("max length reached\n");
+			//PRINTF("max length reached\r");
 			*ptr->tail = data;
-			printf("Content at tail = %d at address %p \n", *(ptr->tail),ptr->tail);
+			//printf("Content at tail = %d at address %p \n", *(ptr->tail),ptr->tail);
 			ptr->tail = ptr->buffer;	/*Wrap Around*/
 			ptr->counter++;
 			return BUFF_ADD_SUCCESS;
 		}
 		else
 		{
-			printf("max length not reached\n");
+			//PRINTF("max length not reached\n\r");
 			*ptr->tail = data;
-			printf("Content at tail = %d at address %p \n", *(ptr->tail),ptr->tail);
+			//printf("Content at tail = %d at address %p \n", *(ptr->tail),ptr->tail);
 			ptr->tail++;
 			ptr->counter++;
 			return BUFF_ADD_SUCCESS;
@@ -162,13 +172,13 @@ status buff_remove(circbuf_t *ptr)
 {
 	if( buff_Isempty( ptr ) == BUFF_FULL || buff_Isempty( ptr ) == BUFF_NOT_EMPTY )
 	{
-		printf("inside delete function\n");
+		//PRINTF("inside delete function\n");
 		if( ptr->head == ptr->buffer + ptr->max_len - 1 )	/*check if head is at the last location, should wrap around*/
 		{
 //			int8_t data;
-			printf("\n head is at the last");
+			//PRINTF("\n head is at the last");
 			data = *ptr->head;
-			printf("Content at head = %d at address %p \n", *(ptr->head),ptr->head);
+			//tx_poll("Content at head = %d at address %p \n", *(ptr->head),ptr->head);
 			ptr->head = ptr->buffer;	/*Wrap Around*/
 			ptr->counter--;
 			return BUFF_RMV_SUCCESS;
@@ -177,13 +187,16 @@ status buff_remove(circbuf_t *ptr)
 		{
 //			int8_t data;
 			data = *ptr->head;
-			printf("Content at head = %d at address %p \n", *(ptr->head),ptr->head);
+			//printf("Content at head = %d at address %p \n", *(ptr->head),ptr->head);
 			ptr->head++;
 			ptr->counter--;
+			//PRINTF("\n REMOVED..\n\r");
 			return BUFF_RMV_SUCCESS;
 		}
 	}
-	else return BUFF_RMV_FAIL;
+	else
+		{tx_poll("\n\r Buff_rmv_fail\n\r");
+		return BUFF_RMV_FAIL;}
 }
 
 /**
