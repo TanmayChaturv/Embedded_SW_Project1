@@ -136,7 +136,8 @@ status buff_insert( circbuf_t *ptr, int8_t data )
 	{
 		if( ptr->tail == ptr->buffer + ptr->max_len - 1 )	/*check if tail is at the last location, should wrap around*/
 		{
-			//PRINTF("max length reached\r");
+			//PRINTF("INSERTED\n\r");
+			//PRINTF("maxlen\n\r");
 			*ptr->tail = data;
 			//printf("Content at tail = %d at address %p \n", *(ptr->tail),ptr->tail);
 			ptr->tail = ptr->buffer;	/*Wrap Around*/
@@ -146,6 +147,7 @@ status buff_insert( circbuf_t *ptr, int8_t data )
 		else
 		{
 			//PRINTF("max length not reached\n\r");
+			//PRINTF("INSERTED\r");
 			*ptr->tail = data;
 			//printf("Content at tail = %d at address %p \n", *(ptr->tail),ptr->tail);
 			ptr->tail++;
