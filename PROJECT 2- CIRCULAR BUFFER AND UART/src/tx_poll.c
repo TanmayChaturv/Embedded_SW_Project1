@@ -3,20 +3,22 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdint.h>
-#include"help.h"
 #include"headers.h"
 
-//SDK files
-#include "board.h"
-#include "fsl_lptmr_driver.h"
-#include "fsl_debug_console.h"
-#include <MKL25Z4.h>
-#include "tx_poll.h"
 
+/**
+* @brief Transmit String Via Polling
+*
+* Takes a null-terminated input string, transmits, and
+* polls TDRE flag until it is set to 1, meaning TX buffer empty.
+*
+* @param *str base pointer of null-terminated string to be transmitted
+*
+* @return void
+*/
 void tx_poll(char *str)
 {
-//	uart_init_tx();
-	while(*str)
+	while((*str != '\0'))
 	{
 		while(!((UART0->S1 & 0x80)));
 		UART0->D = (*str);
@@ -24,7 +26,7 @@ void tx_poll(char *str)
 	}
 }
 
-
+#ifdef POLLING
 void uart_init_tx(void)
 {
 	SIM->SCGC4	|=	__UART0_CLK_EN_;	/*Enable Clk for UART0*/
@@ -36,31 +38,27 @@ void uart_init_tx(void)
 	UART0->C1	=	__UART0_8BIT_;		/*8-Bit mode*/
 	UART0->C1	=	__UART0_NO_PRTY_;	/*Parity disabled*/
 	UART0->C2	|=	__UART0_TXPOLL_EN_;	/*Transmitter Enable Polling*/
-	UART0->C2	&=	~(__UART0_RXINTP_EN_);	/*Disable interrupt*/
+	//UART0->C2	&=	~(__UART0_RXINTP_EN_);	/*Disable interrupt*/
 	SIM->SCGC5	|=	__PORTA_CLK_EN_;	/*Clk enable for PORTA*/
 	PORTA->PCR[2]	=	__PORTA_MUX_UART0_;	/*MUX; Set to Alternative 2 for UART0*/
 	delay();				/*Delay for configurations to get stable*/
 }
+#endif
 
-/*Monitor Status Reg 1, bit TDRE and poll if txbuf empty*/
-void txbuf_status(void)
-{
-	while(!((UART0->S1 &= 0x80)))	/*Polls till 7th Bit, TDRE, is cleared, meaning wait till TX buffer empty*/
-	{
-		//PRINTF("\n\r checking status\n\r");
-	}
-}
 
-void delay(void)
-{
-	for(int i = 0; i<1000; i++);
-}
-
+/**
+* @brief Transmit Characters Via Polling
+*
+* Takes a single input character, transmits, and
+* polls TDRE flag until it is set to 1, meaning TX buffer empty.
+*
+* @param *str character to be transmitted
+*
+* @return void
+*/
 void tx_data_poll(char data_tx)
 {
-	uart_init_tx();
+	while(!((UART0->S1 & 0x80)));
 	UART0->D = data_tx;
-	txbuf_status();
-	UART0->C2	|=	(__UART0_RXINTP_EN_);
 }
 

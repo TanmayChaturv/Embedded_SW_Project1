@@ -5,21 +5,28 @@
  *      Author: Tanmay Chaturvedi, Smitha Bhaskar
  */
 
-/*for enabling tx and rx interrupt*/
 //HEADER FILES
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdint.h>
 #include"headers.h"
-
-//SDK files
-
 #include <MKL25Z4.h>
 #include "uart_frdm.h"
 
 circbuf_t *TXbuf;
 circbuf_t *RXbuf;
 
+
+//#ifdef INTERRUPT
+/**
+* @brief UART Initialization
+*
+* Set Clock, disable UART0, Set baud rate, Set Pin as UART0, enable UART0
+* Enable Receiver interrupt, setup NVIC.
+* @param none
+*
+* @return none
+*/
 void uart_init(void)
 {
 
@@ -35,47 +42,32 @@ void uart_init(void)
 
 	PORTA->PCR[2]	=	__PORTA_MUX_UART0_;	/*MUX; Set to Alternative 2 for UART0*/
 	PORTA->PCR[1]	=	__PORTA_MUX_UART0_;
-	//UART0->C1	=	__UART0_NO_PRTY_;	/*parity disabled*/
 	UART0->C2	|=	__UART0_UART_EN_;	/*UART0 Enable*/
 	UART0->C2	|=	__UART0_RXINTP_EN_;	/*UART0 RX Mask and Rx interrupt Enable*/
-	//UART0->C2	|=  __UART0_TXPOLL_EN_;
 	__enable_irq();
-	//NVIC->ISER[0]	|=	0x00001000;		/*Nested Vec Intp Cntrller(NVIC), Interrupt Service Enable Register(ISER)*/
-	NVIC_EnableIRQ(UART0_IRQn);
 
-
+	NVIC_EnableIRQ(UART0_IRQn);	/*Nested Vec Intp Cntrller(NVIC), Interrupt Service Enable Register(ISER)*/
 }
-//int x = UART0_C2_TE_MASK | UART0_C2_RE_MASK | UART0_C2_RIE_MASK;
+//#endif
 
-/*IRQ handler for UART0*/
-
+/**
+* @brief IRQ Handler
+*
+* Checks if receiver interrupt has occured, stores the data from data reg,
+* inserts into circ-buf, updates database of char-occurence, removes the data
+* from buffer, sets rx_flag and exits ISR.
+*
+* @param none
+*
+* @return none
+*/
 void UART0_IRQHandler(void)
 {
 	if( UART0->S1 & UART0_S1_RDRF_MASK){
 	data_rx = UART0->D;
-	status RXbuf_add =  buff_insert(RXbuf, data_rx);
+	status RXbuf_add = buff_insert(RXbuf, data_rx);
 	char_database[data_rx] += 1;
-	status database_update =	buff_remove(RXbuf);
+	status database_update = buff_remove(RXbuf);
 	rx_flag = 1;
 	}
 }
-
-
-
-void uart_print(char *data)
-{
-	if(*data)
-	{
-		tx_poll("In uart_print");
-		UART0->D = (*data);
-		UART0->C2	|=	__UART0_TXINTP_EN_;
-	}
-/*
-	uart_init_tx();
-	while(*str){
-	UART0->D = (*str);
-	str++;
-	txbuf_status();
-	}*/
-}
-
