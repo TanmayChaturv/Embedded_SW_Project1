@@ -17,8 +17,8 @@ typedef struct{
 	int8_t	*buffer;
 	int8_t	*head;
 	int8_t	*tail;
-	int8_t	counter;
-	int8_t	max_len;
+	uint8_t	counter;
+	uint8_t	max_len;
 }circbuf_t;
 
 /*Return type*/

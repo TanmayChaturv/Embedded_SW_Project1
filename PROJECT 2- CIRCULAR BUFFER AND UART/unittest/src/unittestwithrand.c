@@ -22,7 +22,7 @@ int main()
 	srand(time(0));
 
 	value=(rand()%250)+1;
-	printf("\n\r Rand=%d", value);
+//	printf("\n\r Rand=%d", value);
 	new_value=value+10; //For realloc()
 	if( CU_initialize_registry() == CUE_NOMEMORY )
 	return CU_get_error();
@@ -66,7 +66,7 @@ int cu_init_func(void)
 {
 	
 	ptr = (circbuf_t *)malloc(abs(sizeof(circbuf_t)));
-	printf("\n\r ptr is %p",ptr);
+//	printf("\n\r ptr is %p",ptr);
 	return 0;
 }
 
