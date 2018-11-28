@@ -35,6 +35,7 @@ typedef enum status{
 	BUFF_NOT_FULL,	/*If partially filled/empty*/
 	BUFF_EMPTY,	/*Completely empty, can't remove any further*/
 	BUFF_NOT_EMPTY,	/*If partially filled/empty*/
+	BUFF_PTR_NULL,	/*If null pointer received*/
 }status;
 
 /*Function Prototypes*/
