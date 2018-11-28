@@ -3,21 +3,25 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdint.h>
+#include"help.h"
 #include"headers.h"
 
 //SDK files
-
+#include "board.h"
+#include "fsl_lptmr_driver.h"
+#include "fsl_debug_console.h"
+#include <MKL25Z4.h>
+#include "tx_poll.h"
 
 void tx_poll(char *str)
 {
-
-	while((*str != '\0')){
-	//txbuf_status();
+//	uart_init_tx();
+	while(*str)
+	{
 		while(!((UART0->S1 & 0x80)));
-	UART0->D = (*str);
-	str++;
+		UART0->D = (*str);
+		str++;
 	}
-
 }
 
 
@@ -32,7 +36,7 @@ void uart_init_tx(void)
 	UART0->C1	=	__UART0_8BIT_;		/*8-Bit mode*/
 	UART0->C1	=	__UART0_NO_PRTY_;	/*Parity disabled*/
 	UART0->C2	|=	__UART0_TXPOLL_EN_;	/*Transmitter Enable Polling*/
-	//UART0->C2	&=	~(__UART0_RXINTP_EN_);	/*Disable interrupt*/
+	UART0->C2	&=	~(__UART0_RXINTP_EN_);	/*Disable interrupt*/
 	SIM->SCGC5	|=	__PORTA_CLK_EN_;	/*Clk enable for PORTA*/
 	PORTA->PCR[2]	=	__PORTA_MUX_UART0_;	/*MUX; Set to Alternative 2 for UART0*/
 	delay();				/*Delay for configurations to get stable*/
@@ -41,7 +45,7 @@ void uart_init_tx(void)
 /*Monitor Status Reg 1, bit TDRE and poll if txbuf empty*/
 void txbuf_status(void)
 {
-	while(!((UART0->S1 & 0x80)))	/*Polls till 7th Bit, TDRE, is cleared, meaning wait till TX buffer empty*/
+	while(!((UART0->S1 &= 0x80)))	/*Polls till 7th Bit, TDRE, is cleared, meaning wait till TX buffer empty*/
 	{
 		//PRINTF("\n\r checking status\n\r");
 	}
@@ -49,16 +53,14 @@ void txbuf_status(void)
 
 void delay(void)
 {
-	for(int i = 0; i<100; i++);
+	for(int i = 0; i<1000; i++);
 }
 
 void tx_data_poll(char data_tx)
 {
-	//__disable_irq();
-	//uart_init_tx();
+	uart_init_tx();
 	UART0->D = data_tx;
 	txbuf_status();
-	//__enable_irq();
-	//UART0->C2	|=	(__UART0_RXINTP_EN_);
+	UART0->C2	|=	(__UART0_RXINTP_EN_);
 }
 
