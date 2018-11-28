@@ -1,42 +1,69 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include "../inc/circ_buf.h"
+#include "fsl_device_registers.h"
+#include "../INC/headers.h"
 
-int8_t j;
+circbuf_t *TXbuf;
+circbuf_t *RXbuf;
+extern uint32_t char_database[255];
+int n = 50;	/*change the number of fibonacci numbers*/
+int fibo(int);	
+int f;	/*Fibonacci index*/
 
-void main()
+int main(void)
 {
-circbuf_t *ptr;
-status bp=buff_init(ptr,3);
- status flag;
-int8_t udata;
+	__disable_irq();
+	__enable_irq();
 
+	TXbuf = (circbuf_t*)malloc(sizeof(circbuf_t));
+	status TXbuf_stat = buff_init(TXbuf, 255);
 
-for (j=0; j<3; j++)
-{
-printf("%d\n",j);
-printf("enter data for the ring buffer\n");
-scanf("%d",&udata);
-flag= buff_insert(ptr,udata);
-//printf("Flag is %d \n",flag);
-//j++;
+	RXbuf = (circbuf_t*)malloc(sizeof(circbuf_t));
+	status RXbuf_stat = buff_init(RXbuf, 100);
+
+	uart_init();
+	tx_poll("\n\r*System Initialized*\n\r");
+
+	int local_flag = 0;
+	while(1)
+	{
+	if(rx_flag == 1)	/*This flag is set when first interrupt happens. Cleared when below report is printed*/
+	{
+		for(int i = 0; i <= 100; i++);	/*wait for loop to complete before printing any report*/
+		char str[30] = {0};
+ 	   	tx_poll("\n\r*Report:*\n\r");
+ 	   	for(int i = 0; i< 255; i++)
+		{
+ 			if(char_database[i] != 0)	/*Print only if occurence of char is non-zero*/
+			{
+ 				sprintf(str, "\n\r %c - %lu\n\r", i, char_database[i]);
+ 		   		tx_poll(str);
+				str[30]={0};
+				sprintf(str, "\n\r Fibonacci Value = %d\n\r",fibo(f));
+				tx_poll(str);
+                        }
+		}
+		rx_flag = 0;
+	 }
+	else
+	{
+		int f = 0,
+		int  c;
+		for (c = 1; c <= n; c++)
+      		{
+			f++;
+      		}
+	}
+	}
 }
 
 
-printf("Removal\n");
-for (j= 0; j<3; j++)
+int fibo(int num)
 {
-flag=buff_remove(ptr);
-printf("Flag is %d \n",flag);
+	if (num == 0 || num == 1)
+		return num;
+     	else
+        	return (fibo(num-1) + fibo(num-2));
 }
 
-printf("enter data for the ring buffer\n");
-scanf("%d",&udata);
-flag= buff_insert(ptr,udata);
-printf("Flag is %d \n",flag);
-
-
-}
-
-
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////
