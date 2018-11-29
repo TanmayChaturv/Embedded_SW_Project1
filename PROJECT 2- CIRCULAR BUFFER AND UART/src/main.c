@@ -16,38 +16,43 @@ int main(void)
 	__disable_irq();
 	__enable_irq();
 
+	led_init();
+	uart_init();
+
 	/*Creating a Transmit Circular Buffer*/
 	TXbuf = (circbuf_t*)malloc(sizeof(circbuf_t));
 	status TXbuf_stat = buff_init(TXbuf, 255);
 
 	/*Creating a Receiver Circular Buffer*/
 	RXbuf = (circbuf_t*)malloc(sizeof(circbuf_t));
-	status RXbuf_stat = buff_init(RXbuf, 100);
+	status RXbuf_stat = buff_init(RXbuf, 2);
 
-	led_init();
-	uart_init();
-	tx_poll("\n\r*System Initialized*\n\r");
-
-	while(1)
+	if ( RXbuf_stat != 3 )
 	{
-	if(rx_flag == 1)	/*This flag is set when first interrupt happens. Cleared when below report is printed*/
-	{
-		led_start(0);	/*LED off*/
-		Report_Handler();
+		tx_poll("\n\r*System Initialized*\n\r");
+		while(1)
+		{
+		if(rx_flag == 1)	/*This flag is set when first interrupt happens. Cleared when below report is printed*/
+			{
+				led_start(0);	/*LED off*/
+				Report_Handler();
+			}
+			else	/*Generate Seed for Fibonacci when no interrupt*/
+			{
+				led_start(2);	/*parameter 2 is LED toggle*/
+				int c;
+				for (c = 1; c <= 16; c++)
+				{
+					f = (f+1)%15;
+					for(int i=0;i<7000;i++);
+      			}
+			}
+		}
 	}
-	else	/*Generate Seed for Fibonacci when no interrupt*/
-	{
-		led_start(2);	/*parameter 2 is LED toggle*/
-		int c;
-		for (c = 1; c <= 16; c++)
-      		{
-			f = (f+1)%15;
-			for(int i=0;i<7000;i++);
-      		}
-	}
-	}
+	else {
+		tx_poll("\n\r*System Not Initialized*\n\r");
+		}
 }
-
 /**
 * @brief Generates Fibonacci values
 *
