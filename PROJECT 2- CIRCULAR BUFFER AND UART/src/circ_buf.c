@@ -26,10 +26,10 @@ int8_t data;
 
 status buff_init( circbuf_t *ptr, int8_t length )
 {
-	if(ptr!=NULL)
-	{
-		if ( length <= 0 )
+		if ( ptr == NULL || length <= 0 )
+		{
 			return BUFF_INIT_FAIL;
+		}
 		else
 		{
 			ptr->buffer = (int8_t*)malloc(sizeof(int8_t)*length);
@@ -46,8 +46,6 @@ status buff_init( circbuf_t *ptr, int8_t length )
 				return BUFF_INIT_SUCCESS;
 			}
 		}
-	}
-	else return BUFF_PTR_NULL;
 }
 
 
