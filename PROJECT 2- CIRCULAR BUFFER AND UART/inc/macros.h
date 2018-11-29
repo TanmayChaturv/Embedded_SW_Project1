@@ -8,6 +8,7 @@
 #ifndef INC_MACROS_H_
 #define INC_MACROS_H_
 
+/*Macros for UART0 Config*/
 #define	__UART0_CLK_EN_		(0x0400)	/*Enable Clk for UART0*/
 #define	__CLK_SRC_FLLCLK_	(0x04000000)	/*Select Clk source*/
 #define	__UART0_DISBL_		(0x00)		/*Disabling UART0 before config*/
@@ -21,5 +22,17 @@
 #define	__UART0_TXINTP_EN_	(0x80)		/*Transmitter Enable Interrupt*/
 #define	__PORTA_CLK_EN_		(0x0200)		/*PortA Clock Enable*/
 #define	__PORTA_MUX_UART0_	(0x200)		/*Set Alt functionality as UART0*/
+
+/*Macros for LED Init*/
+//Credits: Book-Freescale ARM Cortex-M Embedded Programming
+
+/* System Integration Module System Clock Gating Control Register 5*/
+#define	SIM_SCGC5		(*((volatile unsigned int*)0x40048038))
+/* Port B Pin Control Register 19*/
+#define	PORTB_PCR19		(*((volatile unsigned int*)0x4004A04C))
+/* Port B Data Direction Register */
+#define	GPIOB_PDDR		(*((volatile unsigned int*)0x400FF054))
+/* Port B Data Output Register */
+#define	GPIOB_PDOR		(*((volatile unsigned int*)0x400FF040))
 
 #endif /* INC_MACROS_H_ */

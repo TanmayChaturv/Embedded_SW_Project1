@@ -14,11 +14,15 @@ void delay(void);
 void tx_data_poll(char);
 void uart_init_rx_intp(void);
 void uart_init(void);
+void led_start(int status);
+void delay(void);
+void led_init(void);
 
 #include "circ_buf.h"
 #include <MKL25Z4.h>
 #include "uart_frdm.h"
 #include "tx_poll.h"
+#include "led_init.h"
 
 circbuf_t *ptr;
 int8_t data_rx;
