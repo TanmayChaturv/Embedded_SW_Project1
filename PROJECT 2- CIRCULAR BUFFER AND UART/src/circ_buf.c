@@ -8,8 +8,8 @@
 #include<stdio.h>
 #include<stdint.h>
 #include<stdlib.h>
-#include "circ_buf.h"
-#include "headers.h"
+#include "../inc/common/global_variables.h"
+#include "../inc/common/headers.h"
 
 int8_t data;
 

@@ -26,13 +26,14 @@
 /*Macros for LED Init*/
 //Credits: Book-Freescale ARM Cortex-M Embedded Programming
 
+/*
 /* System Integration Module System Clock Gating Control Register 5*/
-#define	SIM_SCGC5		(*((volatile unsigned int*)0x40048038))
+//#define	SIM_SCGC5		(*((volatile unsigned int*)0x40048038))
 /* Port B Pin Control Register 19*/
-#define	PORTB_PCR19		(*((volatile unsigned int*)0x4004A04C))
+//#define	PORTB_PCR19		(*((volatile unsigned int*)0x4004A04C))
 /* Port B Data Direction Register */
-#define	GPIOB_PDDR		(*((volatile unsigned int*)0x400FF054))
+//#define	GPIOB_PDDR		(*((volatile unsigned int*)0x400FF054))
 /* Port B Data Output Register */
-#define	GPIOB_PDOR		(*((volatile unsigned int*)0x400FF040))
-
+//#define	GPIOB_PDOR		(*((volatile unsigned int*)0x400FF040))
+//*/
 #endif /* INC_MACROS_H_ */

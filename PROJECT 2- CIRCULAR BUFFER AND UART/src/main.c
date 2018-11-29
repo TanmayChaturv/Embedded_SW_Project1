@@ -1,10 +1,14 @@
-#include "fsl_device_registers.h"
-#include "../INC/headers.h"
-
+//#include "fsl_device_registers.h"
+#include "../inc/common/headers.h"
+#include "../inc/common/global_variables.h"
 //#define INTERRUPT
 
 circbuf_t *TXbuf;
 circbuf_t *RXbuf;
+
+
+//uint32_t char_database[255] = {0};
+
 extern uint32_t char_database[255];
 int n = 20;	/*change the number of fibonacci numbers*/
 int fibo(int);
@@ -13,8 +17,8 @@ void Report_Handler(void);
 
 int main(void)
 {
-	__disable_irq();
-	__enable_irq();
+//	__disable_irq();
+//	__enable_irq();
 
 	led_init();
 	uart_init();
@@ -92,7 +96,7 @@ void Report_Handler(void)
 	{
 		if(char_database[i] != 0)	/*Print only if occurence of char is non-zero*/
 		{
-			sprintf(str, "\n\r %c - %lu\n\r", i, char_database[i]);
+			sprintf(str, "\n\r %c - %u\n\r", i, char_database[i]);
 	   		tx_poll(str);
         }
 	}

@@ -3,7 +3,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdint.h>
-#include"headers.h"
+#include"../inc/common/headers.h"
+#include "../inc/common/global_variables.h"
 
 
 /**

@@ -5,11 +5,11 @@
  *      Author: Tanmay Chaturvedi, Smitha Bhaskar
  */
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<stdint.h>
-#include"headers.h"
-#include <MKL25Z4.h>
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include<stdint.h>
+#include"../inc/common/headers.h"
+//#include "../inc/kl25z/MKL25Z4.h"
 
 /*LED Setup*/
 void led_init(void)

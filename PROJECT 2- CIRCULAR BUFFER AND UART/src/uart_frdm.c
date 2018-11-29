@@ -9,9 +9,10 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdint.h>
-#include"headers.h"
-#include <MKL25Z4.h>
-#include "uart_frdm.h"
+#include"../inc/common/headers.h"
+#include "../inc/common/global_variables.h"
+//	#include "../inc/kl25z/MKL25Z4.h"
+//#include "../inc/common/uart_frdm.h"
 
 circbuf_t *TXbuf;
 circbuf_t *RXbuf;
@@ -44,7 +45,7 @@ void uart_init(void)
 	PORTA->PCR[1]	=	__PORTA_MUX_UART0_;
 	UART0->C2	|=	__UART0_UART_EN_;	/*UART0 Enable*/
 	UART0->C2	|=	__UART0_RXINTP_EN_;	/*UART0 RX Mask and Rx interrupt Enable*/
-	__enable_irq();
+//	__enable_irq();
 
 	NVIC_EnableIRQ(UART0_IRQn);	/*Nested Vec Intp Cntrller(NVIC), Interrupt Service Enable Register(ISER)*/
 }

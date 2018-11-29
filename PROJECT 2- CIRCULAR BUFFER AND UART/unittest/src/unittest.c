@@ -1,3 +1,7 @@
+//Code by Tanmay Chaturvedi, Smitha Bhaskar
+//Credits[1]: http://cunit.sourceforge.net/screenshots.html
+//Credits[2]: https://github.com/sorabhgandhi01/Interactive-Memory-Utility/blob/master/UnitTests/util_test.c
+
 #include <stdio.h>
 #include <stdlib.h>
 
