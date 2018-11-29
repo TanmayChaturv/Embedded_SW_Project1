@@ -14,7 +14,7 @@
 #define	__UART0_DISBL_		(0x00)		/*Disabling UART0 before config*/
 #define	__UART0_8BIT_		(0x00)		/*8-Bit mode*/
 #define	__UART0_NO_PRTY_	(0x00)		/*Parity Disabled*/
-#define __UART0_BDL_		(0x18)		/*Baudrate High*/
+#define	__UART0_BDL_		(0x18)		/*Baudrate High*/
 #define	__UART0_RXPOLL_EN_	(0x04)		/*Receiver Enable Polling*/
 #define	__UART0_RXINTP_EN_	(0x20)		/*Receiver Interrupt Enable */
 #define	__UART0_TXPOLL_EN_	(0x08)		/*Transmitter Enable Polling*/
