@@ -1,55 +1,179 @@
-# -*- MakeFile -*-
-# Coded by Tanmay Chaturvedi and Smitha Bhaskar       ##
-# Principles of Embedded Software Course - CU Boulder ##
-# Date: Nov 23, 2018				      ##
+include src.mk
+ 
 
-## Code to build all .c files and their dependencies into one target file, named testoutput ##
+#variables
 
-## Code Begin ##
+TARGET = PROJECT2
 
-# Require TESTMETHOD to be specified
-ifndef TESTMETHOD
-$(info Please specify a test method(STATIC/AUTOMATED), e.g TESTMETHOD=STATIC)
-$(error unspecified test method)
+PRINTALLOW = KL25Z
+
+PLATFORM = HOST
+
+LINKER_FILE = ../platform/MKL25Z128xxx4_flash.ld
+
+CPU = cortex-m0plus
+
+ARCHITECTURE = armv6-m                  
+
+FPU = fpv4-sp-d16
+
+SPECS = nosys.specs
+
+ 
+
+#check if platform is host
+
+ifeq ($(PLATFORM), HOST)
+
+              CC = gcc
+
+              CFLAGS = -Wall -Werror -g -O0 -std=c99 $(INCLUDES)
+
+              CPPFLAGS = -DHOST -DPROJECT1 -D VERBOSE
+
+              LDFLAGS = -Wl,-Map=$(TARGET).map
+
+              OBJFILES = $(SOURCES:.c=.o)
+
 endif
 
-TESTMETHOD = STATIC
-CC= gcc #defining compiler
-CFLAGS= -Werror -Wall 
-#-I../inc/  #include files from /inc folder
+ 
 
-#vpath %.h ../inc
+#check if platform is Beaglebone
 
-ifeq ($(TESTMETHOD), STATIC)
-	SRCFILES:=circ_buf.c unittest.c
+ifeq ($(PLATFORM),BBB)
 
-else
-	SRCFILES:=circ_buf.c unittestwithrand.c
+              CC = arm-linux-gnueabihf-gcc
+
+              CFLAGS = -Wall -Werror -g -O0 -std=c99 $(INCLUDES)
+
+              CPPFLAGS = -DBBB -DPROJECT1 -D VERBOSE
+
+              LDFLAGS = -Wl,-Map=$(TARGET).map
+
+              OBJFILES = $(SOURCES:.c=.o)
+
 endif
 
-#else -@echo 'give "STATIC" or "AUTOMATED" as TESTMETHOD arguments.'
-#	-@echo 'example: make TESTMETHOD=STATIC'
-#OBJFILES:=circ_buf.o unit_test.o
+ 
 
-all: unittest
+#check if platform is KL25Z
 
-unittest: $(SRCFILES)
-	$(CC) $(CFLAGS) -o unittest $(SRCFILES) -lcunit
-	-@echo 'Build Successful! Enter './unittest' to run the testing'
-#testoutput: $(OBJFILES)
-#	$(CC) $(OBJFILES) -o testoutput
-#	-@echo 'Build successful, enter "./testoutput" to run'
+ifeq ($(PLATFORM),KL25Z)
 
-#circ_buf.o: circ_buf.c
+              CC = arm-none-eabihf-gcc
 
-#circ_buf.o: $(SRCFILES)
-#	$(CC) $(CFLAGS) circ_buf.c
+              CFLAGS = -Wall -Werror -g -O0 -std=c99 -mcpu=$(CPU) \
 
-#unit_test.o: $(SRCFILES)
-#	$(CC) $(CFLAGS) unit_test.c -lcunit
+                           -mthumb -march=$(ARCHITECTURE) -mfloat-abi=soft \
+
+                           -mfpu=$(FPU) --specs=$(SPECS) $(INCLUDES_KL25Z)
+
+              CPPFLAGS = -DKL25Z -DPROJECT1 -D$(PRINTALLOW)
+
+              LDFLAGS = -Wl,-Map=$(TARGET).map -T $(LINKER_FILE)
+
+              OBJFILES = $(SOURCES_KL25Z:.c=.o) startup_MKL25Z4.o
+
+endif
+
+ 
+
+CC= gcc -Werror #defining compiler
+
+CFLAGS= -c  #compilation variable
+
+DEPS= headers.h circ_buf.h led_init.h macros.h tx_poll.h uart_frdm.h
+
+
+ 
+Functions= circ_buf.o led_init.o main.o tx_poll.o uart_frdm.o unittest.o unittestwithrand.o
+
+SRC_Functions = circ_buf.c led_init.c tx_poll.c uart_frdm.c unittest.c unittestwithrand.c
+
+ 
+
+# Build target
+
+all: final
+
+ 
+
+final: $(Functions)
+
+              $(CC) $(Functions) -o final
+
+              -@echo 'Build successful, enter "./final" to run'
+
+ 
+
+main.o: main.c  $(SRC_Functions)
+
+              $(CC) $(CFLAGS) main.c
+
+ 
+
+circ_buf.o: circ_buf.c 
+
+              $(CC) $(CFLAGS) circ_buf.c
+
+ 
+
+led_init.o: led_init.c 
+
+              $(CC) $(CFLAGS) led_init.c
+
+ 
+
+ 
+
+tx_poll.o: tx_poll.c
+
+              $(CC) $(CFLAGS) tx_poll.c
+
+ 
+
+ 
+
+uart_frdm.o: uart_frdm.c
+
+              $(CC) $(CFLAGS) uart_frdm.c
+
+ 
+
+ 
+
+unittest.o: unittest.c
+
+              $(CC) $(CFLAGS) unittest.c
+
+ 
+
+ 
+
+unittestwithrand.o: unittestwithrand.c
+
+              $(CC) $(CFLAGS) unittestwithrand.c
+
+ 
+
+
+#All .o files should depend upon respective .c files and headers.h file (DEPS)
+
+#*.o: *.c $(DEPS)
+
+# gcc -c -o $(all dependencies) $(target file); means first compiling .c and .h into .o, then linking all dependencies to Target file
+
+#            $(CC) -c $^ -o $@
+
+ 
+
+ 
 
 clean:
-	-@echo 'Removing Object and Executable files...'
-	rm unittest *.xml
-	-@echo 'Removed Object and Executable files.' 
 
+              -@echo 'Removing Object and Executable files...'
+
+              rm *.o final
+
+              -@echo 'Removed Object and Executable files.'
