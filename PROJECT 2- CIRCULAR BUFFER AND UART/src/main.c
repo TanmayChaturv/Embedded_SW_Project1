@@ -24,6 +24,7 @@ int main(void)
 	RXbuf = (circbuf_t*)malloc(sizeof(circbuf_t));
 	status RXbuf_stat = buff_init(RXbuf, 100);
 
+	led_init();
 	uart_init();
 	tx_poll("\n\r*System Initialized*\n\r");
 
@@ -31,10 +32,12 @@ int main(void)
 	{
 	if(rx_flag == 1)	/*This flag is set when first interrupt happens. Cleared when below report is printed*/
 	{
+		led_start(0);	/*LED off*/
 		Report_Handler();
 	}
 	else	/*Generate Seed for Fibonacci when no interrupt*/
 	{
+		led_start(2);	/*parameter 2 is LED toggle*/
 		int c;
 		for (c = 1; c <= 16; c++)
       		{
