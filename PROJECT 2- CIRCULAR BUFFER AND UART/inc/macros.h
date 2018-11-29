@@ -20,7 +20,7 @@
 #define	__UART0_TXPOLL_EN_	(0x08)		/*Transmitter Enable Polling*/
 #define	__UART0_UART_EN_	(0x0C)		/*Enable Transmit and Receive*/
 #define	__UART0_TXINTP_EN_	(0x80)		/*Transmitter Enable Interrupt*/
-#define	__PORTA_CLK_EN_		(0x0200)		/*PortA Clock Enable*/
+#define	__PORTA_CLK_EN_		(0x0200)	/*PortA Clock Enable*/
 #define	__PORTA_MUX_UART0_	(0x200)		/*Set Alt functionality as UART0*/
 
 /*Macros for LED Init*/
