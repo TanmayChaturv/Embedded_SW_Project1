@@ -24,7 +24,21 @@ void dma_init(void)
 
 	ADC0_SC2	|=	ADC_SC2_DMAEN_MASK;
 
+	DMA_DCR0       &=~ DMA_DCR_CS; //Selecting continuous cycle for transfer requests
 
 
+}
+
+void dma_transmit(void)
+{
+
+	DMA_DCR0 |= DMA_DCR_START(1);
+}
+
+void DMA0_IRQHandler()
+{
+	NVIC_ClearPendingIRQ(DMA0_IRQn);
+
+	DMA_DSR_BCR0 |= DMA_DSR_BCR_DONE(1);
 
 }
