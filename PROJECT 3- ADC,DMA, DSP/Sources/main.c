@@ -57,6 +57,7 @@ int main(void)
 	while(1)
 	{
 	int16_t data = adc_read();
+	dma_transmit();
 	delay();
 	char str[20] = {0};
 	sprintf(str,"\n\rVal=%d",RXbuf_stat);
