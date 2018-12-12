@@ -6,9 +6,13 @@
 #define INC_HEADERS_H_
 
 #include<stdint.h>
-#include "macros.h"
+#include "../INC/macros.h"
 #include <MKL25Z4.h>
 #include "uart_frdm.h"
-#include "adc.h"
+//#include "../INC/adc.h"
+#include "../INC/circ_buf.h"
 
+void adc_init(void);
+int16_t adc_read();
+circbuf_t *RXbuf;
 #endif
