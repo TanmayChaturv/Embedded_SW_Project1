@@ -31,6 +31,7 @@
 
 #include "fsl_device_registers.h"
 #include "../INC/headers.h"
+#include "../INC/dma_final.h"
 //#include "headers.h"
 #include <stdint.h>
 #include <stdio.h>
@@ -39,7 +40,6 @@
 
 void delay();
 //static int i = 0;
-circbuf_t *RXbuf;
 
 int main(void)
 {
@@ -47,20 +47,41 @@ int main(void)
 	uart_print("\n\rSystem Initialized\n\r");
 	dma_init();
 	
+	int16_t buff;
+	char str[20]={0};
 
 	/*Creating a Receiver Circular Buffer*/
 	RXbuf = (circbuf_t*)malloc(sizeof(circbuf_t));
 	status RXbuf_stat = buff_init(RXbuf, 64);
 
 	adc_init();
-	dma_transmit();
-	
+	buff=adc_read();
+	sprintf(str,"\n\r ADC =%d \n\r",buff);
+	uart_print(str);
+
+	DMA_Configure();
+	DMA_Init();
 
 
 
-	while(1)
+
+
+
+//	dma_transmit();
+}
+
+
+
+	/*while(1)
 	{
-	
+
+		int16_t value;
+		char str[20]={0};
+		for(int i=0;i<100;i++){
+			value=ADC0_RA;
+			sprintf(str,"\n\r %d",value);
+			uart_print(str);
+		}
 	delay();
 	}
 
@@ -70,7 +91,7 @@ void delay()
 {
 int i;
 for(i = 0; i<100000;i++);
-}
+}*/
 ////////////////////////////////////////////////////////////////////////////////
 // EOF
 ////////////////////////////////////////////////////////////////////////////////
