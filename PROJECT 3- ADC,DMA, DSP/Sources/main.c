@@ -45,24 +45,23 @@ int main(void)
 {
 	uart_init();
 	uart_print("\n\rSystem Initialized\n\r");
-	adc_init();
+	dma_init();
+	
 
 	/*Creating a Receiver Circular Buffer*/
 	RXbuf = (circbuf_t*)malloc(sizeof(circbuf_t));
 	status RXbuf_stat = buff_init(RXbuf, 64);
 
-	dma_init();
+	adc_init();
+	dma_transmit();
+	
+
 
 
 	while(1)
 	{
-	int16_t data = adc_read();
-	dma_transmit();
+	
 	delay();
-	char str[20] = {0};
-	sprintf(str,"\n\rVal=%d",RXbuf_stat);
-	uart_print(str);
-	uart_print("\n\rFinished\n\r");
 	}
 
 }

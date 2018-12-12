@@ -22,8 +22,7 @@ void dma_init(void)
 
 	DMA_DCR0	|=	__DMA_INTP_EN_;
 
-	ADC0_SC2	|=	ADC_SC2_DMAEN_MASK;
-
+	
 	DMA_DCR0       &=~ DMA_DCR_CS; //Selecting continuous cycle for transfer requests
 
 
@@ -38,6 +37,14 @@ void dma_transmit(void)
 void DMA0_IRQHandler()
 {
 	NVIC_ClearPendingIRQ(DMA0_IRQn);
+	
+	char str[15]={0};
+	for(int i=0;i<64;i++)
+	{
+		sprintf(str,"\n\r %d",*(RXbuf+i));
+		uart_print(str);
+	}
+
 
 	DMA_DSR_BCR0 |= DMA_DSR_BCR_DONE(1);
 

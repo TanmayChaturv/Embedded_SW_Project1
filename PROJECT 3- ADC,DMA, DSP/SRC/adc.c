@@ -36,7 +36,7 @@ void adc_init()
 	//ADC0_SC1A =31;
 	//ADC0_SC1A =26;
 
-
+	ADC0_SC2	|=	ADC_SC2_DMAEN_MASK; //Enabling DMA 
 	}
 
 
