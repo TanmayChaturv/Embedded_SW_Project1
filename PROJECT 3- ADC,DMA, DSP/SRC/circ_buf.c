@@ -8,8 +8,8 @@
 #include<stdio.h>
 #include<stdint.h>
 #include<stdlib.h>
-#include "circ_buf.h"
-#include "headers.h"
+#include "../INC/circ_buf.h"
+#include "../INC/headers.h"
 
 int16_t data;
 

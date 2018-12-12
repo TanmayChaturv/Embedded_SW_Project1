@@ -9,9 +9,9 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdint.h>
-#include"headers.h"
+#include"../INC/headers.h"
 #include <MKL25Z4.h>
-#include "uart_frdm.h"
+#include "../INC/uart_frdm.h"
 
 
 //#ifdef INTERRUPT
