@@ -43,32 +43,44 @@ void delay();
 
 int main(void)
 {
+
 	uart_init();
 	uart_print("\n\rSystem Initialized\n\r");
 	dma_init();
 	
-	int16_t buff;
+
+	int16_t buff[64];
+	int16_t * buff_dma[64];
+	int16_t dma_max_value=0;
+	int16_t threshold=0;
 	char str[20]={0};
+
+	//GPIO Intialization
+
 
 	/*Creating a Receiver Circular Buffer*/
 	RXbuf = (circbuf_t*)malloc(sizeof(circbuf_t));
 	status RXbuf_stat = buff_init(RXbuf, 64);
 
-	adc_init();
-	buff=adc_read();
-	sprintf(str,"\n\r ADC =%d \n\r",buff);
-	uart_print(str);
+	for(int i=0;i<100;i++){
 
 	DMA_Configure();
-	DMA_Init();
+	dma_max_value=DMA_Init();
+	if(dma_max_value>threshold){
+		threshold=dma_max_value;
+	}
+	else if(dma_max_value>(threshold*alpha)){
+		threshold=dma_max_value;
+	}
+
+	sprintf(str,"\n\r Peak =%d \n\r",threshold);
+	uart_print(str);
+	}
 
 
 
-
-
-
-//	dma_transmit();
 }
+
 
 
 
