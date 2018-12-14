@@ -87,7 +87,7 @@ int main(void)
 	        /* Range of ADC values in table is 294-382 */
 	        /* Generate random value in that range */
 	        int adc_rdg = rand() % (3820 - 2940) + 2940;
-	        printf("ADC: %d = %d ºC\n", adc_rdg, signal_level_from_adc(adc_rdg));
+	        printf("Signal value: %d dbfs = %d \n", adc_rdg, signal_level_from_adc(adc_rdg));
 	    }
 	    return 0;
 
