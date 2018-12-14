@@ -36,6 +36,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "../INC/circ_buf.h"
+#include "../INC/lookup.h"
 
 
 void delay();
@@ -77,6 +78,18 @@ int main(void)
 	uart_print(str);
 	}
 
+	//Lookup table
+	map_raw_signal_values();
+	dump_adc_map();
+	srand(time(0));
+	    for (int i = 0; i < 20; i++)
+	    {
+	        /* Range of ADC values in table is 294-382 */
+	        /* Generate random value in that range */
+	        int adc_rdg = rand() % (3820 - 2940) + 2940;
+	        printf("ADC: %d = %d ºC\n", adc_rdg, signal_level_from_adc(adc_rdg));
+	    }
+	    return 0;
 
 
 }
@@ -84,26 +97,7 @@ int main(void)
 
 
 
-	/*while(1)
-	{
 
-		int16_t value;
-		char str[20]={0};
-		for(int i=0;i<100;i++){
-			value=ADC0_RA;
-			sprintf(str,"\n\r %d",value);
-			uart_print(str);
-		}
-	delay();
-	}
-
-}
-
-void delay()
-{
-int i;
-for(i = 0; i<100000;i++);
-}*/
 ////////////////////////////////////////////////////////////////////////////////
 // EOF
 ////////////////////////////////////////////////////////////////////////////////
